@@ -20,35 +20,46 @@
             line-height: 1.6;
         }
 
-        /* Navbar */
         .navbar {
             background: linear-gradient(45deg, #1abc9c, #16a085);
             padding: 15px 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: relative;
         }
-
-        .navbar h1 {
-            color: white;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
+        
+        /* Nav Links */
         .nav-links {
             list-style: none;
             display: flex;
             gap: 15px;
+            transition: max-height 0.3s ease-in-out;
         }
-
+        
         .nav-links a {
             color: white;
             text-decoration: none;
             font-weight: 400;
         }
-
+        
         .nav-links a:hover {
             text-decoration: underline;
+        }
+        
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            transition: all 0.3s;
         }
 
         /* Hero Section */

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INN - Tugas dan Materi</title>
+    <title>Izumi Class</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* General Reset */
@@ -151,8 +151,23 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .table {
-                font-size: 14px;
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar.active .nav-links {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
             }
 
             .hero h2 {
@@ -162,11 +177,14 @@
             .hero p {
                 font-size: 1rem;
             }
-        }
 
-        @media (max-width: 768px) {
-            .navbar{
-                width: 100%;
+            .table {
+                font-size: 14px;
+                overflow-x: auto;
+            }
+
+            footer {
+                font-size: 14px;
             }
         }
     </style>

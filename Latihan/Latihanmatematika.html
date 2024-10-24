@@ -3,94 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google" content="notranslate">
-    <meta http-equiv="Content-Language" content="en">
-    <meta name="robots" content="noindex, nofollow, notranslate">
-    <title>Izumirensyu - Math Practice</title>
-
-    
-    <!-- Link to external CSS -->
-    <link rel="stylesheet" href="../css/essaimtk.css">
-  <!-- Import Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+    <title>INN N5</title>
+    <link rel="icon" href="../../gambar/bahan web gambar.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: rgb(255, 113, 113);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .logo h1 {
+            margin-left: 10px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 15px;
+        }
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        .nav-bar-mobile {
+            display: none;
+            flex-direction: column;
+            background-color: rgb(255, 113, 113);
+            position: absolute;
+            top: 60px;
+            width: 100%;
+            left: 0;
+        }
+        .nav-bar-mobile a {
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        footer {
+            background-color: rgb(255, 113, 113);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 600;
+        }
+        .question {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .question:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        .question-header h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .button {
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: #ffffff;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .button.submit {
+            background-color: #28a745;
+        }
+        .button.submit:hover {
+            background-color: #218838;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .modal-header h2 {
+            margin: 0;
+            color: #007bff;
+        }
+        .modal-body {
+            margin: 20px 0;
+        }
+        .modal-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .modal-footer .button {
+            width: 100%;
+        }
+        @media (max-width: 600px) {
+            .question-header h3 {
+                font-size: 16px;
+            }
+            .button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+            .modal-content {
+                width: 95%;
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <main class="container">
-        <header>
-            <h1 class="title">Math Practice Questions 🧠</h1>
-        </header>
+<header>
+    <div class="logo">
+        <img src="../../gambar/bahan web gambar.png" alt="Bahan Web">
+        <h1>INN</h1>
+    </div>
+    <nav>
+        <ul class="nav-bar">
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <span class="hamburger" id="hamburger-menu">
+            <i class="fas fa-bars"></i>
+        </span>
+    </nav>
+</header>
+<div class="nav-bar-mobile" id="mobile-menu">
+    <a href="contact.html">Contact</a>
+</div>
 
-        <form id="quizForm">
-            <section class="question">
-                <label for="answer1">1. 8このあめを、2人に同じ数ずつ分けると、1人分は何こになるでしょう。</label>
-                <input type="number" id="answer1" name="answer1" placeholder="Your answer..." required>
-            </section>
-
-            <section class="question">
-                <label for="answer2">2. 30本のえんぴつを、5人に同じ数ずつ分けると、1人分は何本になるでしょう。</label>
-                <input type="number" id="answer2" name="answer2" placeholder="Your answer..." required>
-            </section>
-
-            <section class="question">
-                <label for="answer3">3. 40まいのおり紙を、1人に1まいずつ配ると、何人に配れるでしょう。</label>
-                <input type="number" id="answer3" name="answer3" placeholder="Your answer..." required>
-            </section>
-
-            <section class="question">
-                <label for="answer4">4. 42cmのひもを6cmずつに切ると、何本のひもがとれるでしょう。</label>
-                <input type="number" id="answer4" name="answer4" placeholder="Your answer..." required>
-            </section>
-
-            <button type="submit" class="submit-btn">Submit</button>
-        </form>
-    </main>
-
-    <div id="resultModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Your Score 🏅</h2>
-            <p id="modalMessage"></p>
+<!-- Formulir kuis esai -->
+<form id="quizForm">
+    <!-- Pertanyaan 1 -->
+    <div class="question">
+        <div class="question-header">
+            <h3>1. 私<span style="color: red;">（______）</span>人間じゃありません。日本語で理由を説明してください。</h3>
+        </div>
+        <div class="question-options">
+            <textarea name="q1" rows="4" cols="50" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
         </div>
     </div>
 
-    <script>
+    <!-- Pertanyaan 2 -->
+    <div class="question">
+        <div class="question-header">
+            <h3>2. インドネシア<span style="color: red;">（______）</span>です。なぜこの文が正しいですか？日本語で答えてください。</h3>
+        </div>
+        <div class="question-options">
+            <textarea name="q2" rows="4" cols="50" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        </div>
+    </div>
+
+    <!-- Pertanyaan 3 -->
+    <div class="question">
+        <div class="question-header">
+            <h3>3. あのかたは私たちの<span style="color: red;">せんせい</span>（______）。この文を日本語で解釈してください。</h3>
+        </div>
+        <div class="question-options">
+            <textarea name="q3" rows="4" cols="50" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        </div>
+    </div>
+
+    <!-- Pertanyaan 4 -->
+    <div class="question">
+        <div class="question-header">
+            <h3>4. 敬語で<span style="color: red;">じゃない</span>の形は何ですか？日本語で説明してください。</h3>
+        </div>
+        <div class="question-options">
+            <textarea name="q4" rows="4" cols="50" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        </div>
+    </div>
+
+    <!-- Pertanyaan 5 -->
+    <div class="question">
+        <div class="question-header">
+            <h3>5. <span style="color: red;">ただいま</span>の反対語は何ですか？理由を日本語で答えてください。</h3>
+        </div>
+        <div class="question-options">
+            <textarea name="q5" rows="4" cols="50" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        </div>
+    </div>
+
+    <!-- Tombol untuk mengumpulkan tugas -->
+    <div class="button-container">
+        <button type="button" class="button submit" onclick="submitQuiz()">Kumpulkan Tugas</button>
+    </div>
+</form>
+
+<!-- Modal -->
+<div id="resultModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Hasil Kuis</h2>
+        </div>
+        <div class="modal-body" id="modalBody">
+            <!-- Hasil akan ditampilkan di sini -->
+        </div>
+        <div class="modal-footer">
+            <button class="button retry" onclick="retryQuiz()">Coba Lagi</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Kursus Bahasa Jepang INN. All rights reserved.</p>
+</footer>
+
+<script>
+    // Toggle mobile menu
+    document.getElementById('hamburger-menu').addEventListener('click', function () {
+        var mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('show');
+    });
+
+    // Fungsi untuk mengumpulkan jawaban esai
+    function submitQuiz() {
         const form = document.getElementById('quizForm');
-        const resultModal = document.getElementById('resultModal');
-        const modalMessage = document.getElementById('modalMessage');
-        const closeBtn = document.querySelector('.close-btn');
-        const correctAnswers = [4, 6, 40, 7];
-
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            let score = 0;
-
-            const answers = [
-                parseInt(document.getElementById('answer1').value),
-                parseInt(document.getElementById('answer2').value),
-                parseInt(document.getElementById('answer3').value),
-                parseInt(document.getElementById('answer4').value)
-            ];
-
-            answers.forEach((answer, index) => {
-                if (answer === correctAnswers[index]) score++;
-            });
-
-            modalMessage.textContent = `You got ${score} out of 4 correct!`;
-            resultModal.style.display = 'block';
-        });
-
-        closeBtn.onclick = function () {
-            resultModal.style.display = 'none';
+        const answers = {
+            q1: form.querySelector('textarea[name="q1"]').value.trim(),
+            q2: form.querySelector('textarea[name="q2"]').value.trim(),
+            q3: form.querySelector('textarea[name="q3"]').value.trim(),
+            q4: form.querySelector('textarea[name="q4"]').value.trim(),
+            q5: form.querySelector('textarea[name="q5"]').value.trim(),
         };
 
-        window.onclick = function (event) {
-            if (event.target === resultModal) {
-                resultModal.style.display = 'none';
+        let isComplete = true;
+        for (let key in answers) {
+            if (!answers[key]) {
+                isComplete = false;
+                break;
             }
-        };
-    </script>
-</body>
+        }
 
+        if (isComplete) {
+            // Tampilkan hasil
+            const modal = document.getElementById('resultModal');
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <p>Semua jawaban telah diisi! Terima kasih telah mengumpulkan tugas.</p>
+                <p>Jawaban Anda akan segera dinilai.</p>
+            `;
+            modal.style.display = 'flex';
+        } else {
+            alert('Mohon isi semua jawaban sebelum mengumpulkan.');
+        }
+    }
+
+    // Fungsi untuk tombol "Coba Lagi"
+    function retryQuiz() {
+        document.getElementById('quizForm').reset(); // Atur ulang form
+        document.getElementById('resultModal').style.display = 'none'; // Sembunyikan modal
+    }
+
+    // Menutup modal ketika klik di luar modal
+    window.onclick = function (event) {
+        const modal = document.getElementById('resultModal');
+        if (event.target === modal) {
+            modal.style.display = 'none'; // Sembunyikan modal
+        }
+    };
+</script>
+</body>
 </html>

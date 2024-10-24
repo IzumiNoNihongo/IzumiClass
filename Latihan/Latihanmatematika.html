@@ -11,35 +11,50 @@
     
     <!-- Link to external CSS -->
     <link rel="stylesheet" href="../css/essaimtk.css">
+  <!-- Import Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
-    <div class="container">
-        <h1 class="title">Math Practice Questions 🧠</h1>
-        <form id="quizForm">
-            <div class="question">
-                <label>1. 8このあめを、2人に同じ数ずつ分けると、1人分は何こになるでしょう。</label>
-                <input type="number" name="answer1" placeholder="Your answer..." required>
-            </div>
+  <!-- Container utama -->
+  <main class="container">
+      <header>
+          <h1 class="title">Math Practice Questions 🧠</h1>
+      </header>
 
-            <div class="question">
-                <label>2. 30本のえんぴつを、5人に同じ数ずつ分けると、1人分は何本になるでしょう。</label>
-                <input type="number" name="answer2" placeholder="Your answer..." required>
-            </div>
+      <form id="quizForm">
+          <!-- Soal 1 -->
+          <section class="question">
+              <label for="answer1">1. 8このあめを、2人に同じ数ずつ分けると、1人分は何こになるでしょう。</label>
+              <input type="number" id="answer1" name="answer1" placeholder="Your answer..." required>
+          </section>
 
-            <div class="question">
-                <label>3. 40まいのおり紙を、1人に1まいずつ配ると、何人に配れるでしょう。</label>
-                <input type="number" name="answer3" placeholder="Your answer..." required>
-            </div>
+          <!-- Soal 2 -->
+          <section class="question">
+              <label for="answer2">2. 30本のえんぴつを、5人に同じ数ずつ分けると、1人分は何本になるでしょう。</label>
+              <input type="number" id="answer2" name="answer2" placeholder="Your answer..." required>
+          </section>
 
-            <div class="question">
-                <label>4. 42cmのひもを6cmずつに切ると、何本のひもがとれるでしょう。</label>
-                <input type="number" name="answer4" placeholder="Your answer..." required>
-            </div>
+          <!-- Soal 3 -->
+          <section class="question">
+              <label for="answer3">3. 40まいのおり紙を、1人に1まいずつ配ると、何人に配れるでしょう。</label>
+              <input type="number" id="answer3" name="answer3" placeholder="Your answer..." required>
+          </section>
 
-            <button type="submit" class="submit-btn">Submit</button>
-            <p id="result" class="result"></p>
-        </form>
-    </div>
+          <!-- Soal 4 -->
+          <section class="question">
+              <label for="answer4">4. 42cmのひもを6cmずつに切ると、何本のひもがとれるでしょう。</label>
+              <input type="number" id="answer4" name="answer4" placeholder="Your answer..." required>
+          </section>
+
+          <!-- Tombol Submit -->
+          <button type="submit" class="submit-btn">Submit</button>
+
+          <!-- Hasil Jawaban -->
+          <p id="result" class="result"></p>
+      </form>
+  </main>
 
    <script>
     // Handling form submission

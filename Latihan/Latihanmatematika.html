@@ -17,77 +17,80 @@
 </head>
 
 <body>
-  <!-- Container utama -->
-  <main class="container">
-      <header>
-          <h1 class="title">Math Practice Questions 🧠</h1>
-      </header>
+    <main class="container">
+        <header>
+            <h1 class="title">Math Practice Questions 🧠</h1>
+        </header>
 
-      <form id="quizForm">
-          <!-- Soal 1 -->
-          <section class="question">
-              <label for="answer1">1. 8このあめを、2人に同じ数ずつ分けると、1人分は何こになるでしょう。</label>
-              <input type="number" id="answer1" name="answer1" placeholder="Your answer..." required>
-          </section>
+        <form id="quizForm">
+            <section class="question">
+                <label for="answer1">1. 8このあめを、2人に同じ数ずつ分けると、1人分は何こになるでしょう。</label>
+                <input type="number" id="answer1" name="answer1" placeholder="Your answer..." required>
+            </section>
 
-          <!-- Soal 2 -->
-          <section class="question">
-              <label for="answer2">2. 30本のえんぴつを、5人に同じ数ずつ分けると、1人分は何本になるでしょう。</label>
-              <input type="number" id="answer2" name="answer2" placeholder="Your answer..." required>
-          </section>
+            <section class="question">
+                <label for="answer2">2. 30本のえんぴつを、5人に同じ数ずつ分けると、1人分は何本になるでしょう。</label>
+                <input type="number" id="answer2" name="answer2" placeholder="Your answer..." required>
+            </section>
 
-          <!-- Soal 3 -->
-          <section class="question">
-              <label for="answer3">3. 40まいのおり紙を、1人に1まいずつ配ると、何人に配れるでしょう。</label>
-              <input type="number" id="answer3" name="answer3" placeholder="Your answer..." required>
-          </section>
+            <section class="question">
+                <label for="answer3">3. 40まいのおり紙を、1人に1まいずつ配ると、何人に配れるでしょう。</label>
+                <input type="number" id="answer3" name="answer3" placeholder="Your answer..." required>
+            </section>
 
-          <!-- Soal 4 -->
-          <section class="question">
-              <label for="answer4">4. 42cmのひもを6cmずつに切ると、何本のひもがとれるでしょう。</label>
-              <input type="number" id="answer4" name="answer4" placeholder="Your answer..." required>
-          </section>
+            <section class="question">
+                <label for="answer4">4. 42cmのひもを6cmずつに切ると、何本のひもがとれるでしょう。</label>
+                <input type="number" id="answer4" name="answer4" placeholder="Your answer..." required>
+            </section>
 
-          <!-- Tombol Submit -->
-          <button type="submit" class="submit-btn">Submit</button>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </main>
 
-          <!-- Hasil Jawaban -->
-          <p id="result" class="result"></p>
-      </form>
-  </main>
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Your Score 🏅</h2>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
 
-   <script>
-    // Handling form submission
-document.getElementById('quizForm').addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent form from refreshing the page
+    <script>
+        const form = document.getElementById('quizForm');
+        const resultModal = document.getElementById('resultModal');
+        const modalMessage = document.getElementById('modalMessage');
+        const closeBtn = document.querySelector('.close-btn');
+        const correctAnswers = [4, 6, 40, 7];
 
-    // Retrieve the user's answers
-    const answer1 = parseInt(document.querySelector('input[name="answer1"]').value);
-    const answer2 = parseInt(document.querySelector('input[name="answer2"]').value);
-    const answer3 = parseInt(document.querySelector('input[name="answer3"]').value);
-    const answer4 = parseInt(document.querySelector('input[name="answer4"]').value);
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let score = 0;
 
-    // Define the correct answers
-    const correctAnswers = [4, 6, 40, 7];
+            const answers = [
+                parseInt(document.getElementById('answer1').value),
+                parseInt(document.getElementById('answer2').value),
+                parseInt(document.getElementById('answer3').value),
+                parseInt(document.getElementById('answer4').value)
+            ];
 
-    // Check the user's answers
-    let score = 0;
-    if (answer1 === correctAnswers[0]) score++;
-    if (answer2 === correctAnswers[1]) score++;
-    if (answer3 === correctAnswers[2]) score++;
-    if (answer4 === correctAnswers[3]) score++;
+            answers.forEach((answer, index) => {
+                if (answer === correctAnswers[index]) score++;
+            });
 
-    // Display the result
-    const resultText = `You got ${score} out of 4 correct!`;
-    document.getElementById('result').textContent = resultText;
-});
+            modalMessage.textContent = `You got ${score} out of 4 correct!`;
+            resultModal.style.display = 'block';
+        });
 
-   </script>
-   <script src="../js/block.js"></script>
-  <script src="../js/copy.js"></script>
-  <script src="../js/honyaku.js"></script>
-  <script src="../js/no screen.js"></script>
+        closeBtn.onclick = function () {
+            resultModal.style.display = 'none';
+        };
 
-     </div>
+        window.onclick = function (event) {
+            if (event.target === resultModal) {
+                resultModal.style.display = 'none';
+            }
+        };
+    </script>
 </body>
+
 </html>

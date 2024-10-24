@@ -1,0 +1,10 @@
+  /* Trik CSS: Mencegah penerjemahan dengan unicode-bidi */
+  .notranslate {
+    unicode-bidi: isolate;
+    direction: ltr;
+  }
+
+  /* Blokir iframe atau embed dari luar */
+  body {
+    display: block !important;
+  }

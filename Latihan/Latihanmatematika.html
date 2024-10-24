@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="robots" content="noindex, nofollow, notranslate">
+    <title>Izumirensyu - Math Practice</title>
+
+    
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="../css/essaimtk.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Math Practice Questions 🧠</h1>
+        <form id="quizForm">
+            <div class="question">
+                <label>1. 8このあめを、2人に同じ数ずつ分けると、1人分は何こになるでしょう。</label>
+                <input type="number" name="answer1" placeholder="Your answer..." required>
+            </div>
+
+            <div class="question">
+                <label>2. 30本のえんぴつを、5人に同じ数ずつ分けると、1人分は何本になるでしょう。</label>
+                <input type="number" name="answer2" placeholder="Your answer..." required>
+            </div>
+
+            <div class="question">
+                <label>3. 40まいのおり紙を、1人に1まいずつ配ると、何人に配れるでしょう。</label>
+                <input type="number" name="answer3" placeholder="Your answer..." required>
+            </div>
+
+            <div class="question">
+                <label>4. 42cmのひもを6cmずつに切ると、何本のひもがとれるでしょう。</label>
+                <input type="number" name="answer4" placeholder="Your answer..." required>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+            <p id="result" class="result"></p>
+        </form>
+    </div>
+
+   <script>
+    // Handling form submission
+document.getElementById('quizForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent form from refreshing the page
+
+    // Retrieve the user's answers
+    const answer1 = parseInt(document.querySelector('input[name="answer1"]').value);
+    const answer2 = parseInt(document.querySelector('input[name="answer2"]').value);
+    const answer3 = parseInt(document.querySelector('input[name="answer3"]').value);
+    const answer4 = parseInt(document.querySelector('input[name="answer4"]').value);
+
+    // Define the correct answers
+    const correctAnswers = [4, 6, 40, 7];
+
+    // Check the user's answers
+    let score = 0;
+    if (answer1 === correctAnswers[0]) score++;
+    if (answer2 === correctAnswers[1]) score++;
+    if (answer3 === correctAnswers[2]) score++;
+    if (answer4 === correctAnswers[3]) score++;
+
+    // Display the result
+    const resultText = `You got ${score} out of 4 correct!`;
+    document.getElementById('result').textContent = resultText;
+});
+
+   </script>
+   <script src="../js/block.js"></script>
+  <script src="../js/copy.js"></script>
+  <script src="../js/honyaku.js"></script>
+  <script src="../js/no screen.js"></script>
+
+     </div>
+</body>
+</html>

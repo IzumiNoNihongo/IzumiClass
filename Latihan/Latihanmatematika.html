@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Soal Matematika</title>
+  <link rel="stylesheet" href="../css/footer.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       background-color: #f4f4f4;
       margin: 0;
       padding: 20px;
@@ -67,6 +69,28 @@
   </style>
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <h1>INN</h1>
+        </div>
+        <nav>
+            <ul class="nav-bar">
+                <li><a href="#">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Akun.html">Login</a></li>
+            </ul>
+            <span class="hamburger" id="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </span>
+        </nav>
+    </header>
+    <div class="nav-bar-mobile" id="mobile-menu">
+        <a href="#">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="Akun.html">Login</a>
+    </div>
 
 <h1>Soal Matematika</h1>
 
@@ -83,7 +107,7 @@
       <span class="label">答え</span>
       <input type="text" name="answer1" required>
     </div>
-    <p>(2) <ruby>大人<rt>おとな</rt></ruby> 3 人分と <ruby>子ども<rt>こども</rt></ruby> 3 人分の<ruby>遊園地<rt>ゆうえんち</rt></ruby>までの<ruby>交通費<rt>こうつうひ</rt></ruby>のちがいは、何円ですか。</p>
+    <p>(2) <ruby>大人<rt>おとな</rt></ruby> 3 人分と <ruby>子ども<rt>こども</rt></ruby> 3 人分の<ruby>遊園地<rt>ゆうえんち</rt></ruby>までの<ruby>交通費<rt>こうつうひ</rt></ruby>のちがいは、何円ですか 。</p>
     <div class="answer">
       <span class="label">式</span>
       <input type="text" name="formula2" required>
@@ -95,7 +119,7 @@
   </div>
 
   <div class="question">
-    <p>2. <ruby>紙<rt>かみ</rt></ruby>テープで、大きい<ruby>おおきい<rt>おおきい</rt></ruby>輪 飾り<ruby>わかざり<rt>わかざり</rt></ruby>を 7 こと、小さい<ruby>ちいさい<rt>ちいさい</rt></ruby>輪飾り<ruby>わかざり<rt>わかざり</rt></ruby>を 7 こつくります。</p>
+    <p>2. <ruby>紙<rt>かみ</rt></ruby>テープで、大きい<ruby>おおきい<rt>おおきい</rt></ruby >輪 飾り<ruby>わかざり<rt>わかざり</rt></ruby>を 7 こと、小さい<ruby>ちいさい<rt>ちいさい</rt></ruby>輪飾り<ruby>わかざり<rt>わかざり</rt></ruby>を 7 こつくります。</p>
     <p>1 こつくるのに、大きい<ruby>おおきい< rt>おおきい</rt></ruby>輪飾り<ruby>わかざり<rt>わかざり</rt></ruby>は 15 cm, 小さい<ruby>ちいさい<rt>ちいさい</rt></ruby>輪飾り<ruby>わかざり<rt>わかざり</rt></ruby>は 8 cm 使います。<ruby>紙<rt>かみ</rt></ruby>テープは全部で何 m 何 cm いりますか。</p>
     <div class="answer">
       <span class="label">式</span>
@@ -131,23 +155,38 @@
     let correctCount = 0;
     let incorrectCount = 0;
     Object.keys(answers).forEach((key) => {
-      if (answers[key] === correctAnswers[key]) {
-        score += 10;
+      const userAnswer = answers[key];
+      const correctAnswer = correctAnswers[key];
+      if (userAnswer === correctAnswer) {
+        score += 33.33;
         correctCount++;
       } else {
+        const difference = Math.abs(parseFloat(userAnswer) - parseFloat(correctAnswer));
+        if (difference < 10) {
+          score += 20;
+        } else if (difference < 20) {
+          score += 10;
+        }
         incorrectCount++;
       }
     });
     const resultHTML = `
-      <p>Score: ${score} / 30</p>
+      <p>Score: ${score.toFixed(2)} / 100</p>
       <p>Correct answers: ${correctCount}</p>
       <p>Incorrect answers: ${incorrectCount}</p>
       <ul>
         ${Object.keys(answers).map((key) => {
-          if (answers[key] === correctAnswers[key]) {
-            return `<li class="correct">${key}: ${answers[key]} (Correct)</li>`;
+          const userAnswer = answers[key];
+          const correctAnswer = correctAnswers[key];
+          if (userAnswer === correctAnswer) {
+            return `<li class="correct">${key}: ${userAnswer} (Correct)</li>`;
           } else {
-            return `<li class="incorrect">${key}: ${answers[key]} (Incorrect)</li>`;
+            const difference = Math.abs(parseFloat(userAnswer) - parseFloat(correctAnswer));
+            if (difference < 10) {
+              return `<li class="partial-correct">${key}: ${userAnswer} (Partially Correct)</li>`;
+            } else {
+              return `<li class="incorrect">${key}: ${userAnswer} (Incorrect)</li>`;
+            }
           }
         }).join('')}
       </ul>

@@ -80,23 +80,7 @@ footer a {
     margin: 0 10px;
     font-weight: 600;
 }
-.question {
-    margin-bottom: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.question:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-}
-.question-header h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #007bff;
-}
+
 .button-container {
     margin-top: 20px;
     text-align: center;
@@ -172,54 +156,6 @@ footer a {
 }
 
 /* Improved Question Options Styles */
-.question-options {
-    margin-bottom: 25px; /* Lebih banyak jarak antar pertanyaan */
-}
-
-.question-options textarea {
-    width: 100%;
-    padding: 18px 20px; /* Padding lebih besar untuk kenyamanan */
-    border: none; /* Hilangkan border default */
-    border-radius: 12px; /* Sudut yang lebih bulat */
-    font-size: 16px; /* Ukuran font yang nyaman */
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(145deg, #e0e5ec, #f5f7fa); /* Gradient background */
-    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.1), -6px -6px 12px rgba(255, 255, 255, 0.8); /* 3D effect shadow */
-    resize: none; /* Nonaktifkan resize */
-    transition: all 0.3s ease-in-out; /* Transisi halus */
-    color: #333; /* Warna teks lebih kontras */
-}
-
-.question-options textarea::placeholder {
-    color: #888; /* Warna placeholder lebih lembut */
-    font-style: italic;
-}
-
-/* Hover and Focus Effects */
-.question-options textarea:hover {
-    box-shadow: 10px 10px 18px rgba(0, 0, 0, 0.2), -10px -10px 18px rgba(255, 255, 255, 0.7); /* Lebih besar saat di hover */
-    background: linear-gradient(145deg, #d6dae1, #ebeff5); /* Perubahan warna gradient */
-}
-
-.question-options textarea:focus {
-    outline: none; /* Hilangkan outline default */
-    background: linear-gradient(145deg, #d6dae1, #ffffff); /* Warna saat fokus */
-    box-shadow: 0px 0px 15px rgba(0, 123, 255, 0.5); /* Efek glow saat fokus */
-}
-
-/* Custom Scrollbar for Textarea */
-.question-options textarea::-webkit-scrollbar {
-    width: 10px; /* Lebar scrollbar */
-}
-
-.question-options textarea::-webkit-scrollbar-thumb {
-    background-color: #007bff; /* Warna thumb scrollbar */
-    border-radius: 10px; /* Rounded scrollbar */
-}
-
-.question-options textarea::-webkit-scrollbar-track {
-    background-color: #f5f7fa; /* Warna background scrollbar */
-}
 
 /* Media Query for Smaller Screens */
 @media (max-width: 600px) {

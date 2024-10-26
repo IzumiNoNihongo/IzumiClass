@@ -1,172 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INN N5</title>
-    <link rel="icon" href="../../gambar/bahan web gambar.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="../css/essaimtk.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soal Matematika</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .question {
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .answer {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    .answer input {
+      width: 100px;
+      margin-right: 10px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .answer .label {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .correct {
+      color: green;
+    }
+    .incorrect {
+      color: red;
+    }
+    ruby {
+      ruby-position: over;
+    }
+  </style>
 </head>
 <body>
-<header>
-    <div class="logo">
-        <img src="../../gambar/bahan web gambar.png" alt="Bahan Web">
-        <h1>INN</h1>
-    </div>
-    <nav>
-        <ul class="nav-bar">
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <span class="hamburger" id="hamburger-menu">
-            <i class="fas fa-bars"></i>
-        </span>
-    </nav>
-</header>
-<div class="nav-bar-mobile" id="mobile-menu">
-    <a href="contact.html">Contact</a>
-</div>
 
-<!-- Formulir kuis esai -->
-<form id="quizForm">
-    <!-- Pertanyaan 1 -->
-    <div class="question">
-        <div class="question-header">
-            <h3>1. 私<span style="color: red;">（______）</span>人間じゃありません。日本語で理由を説明してください。</h3>
-        </div>
-        <div class="question-options">
-            <textarea name="q1" rows="4" cols="50" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
-        </div>
-    </div>
+<h1>Soal Matematika</h1>
 
-    <!-- Pertanyaan 2 -->
-    <div class="question">
-        <div class="question-header">
-            <h3>2. インドネシア<span style="color: red;">（______）</span>です。なぜこの文が正しいですか？日本語で答えてください。</h3>
-        </div>
-        <div class="question-options">
-            <textarea name="q2" rows="4" cols="50" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
-        </div>
+<form id="mathForm">
+  <div class="question">
+    <p>1. <ruby>大人<rt>おとな</rt></ruby> 3 人と <ruby>子ども<rt>こども</rt></ruby> 3 人で、<ruby>遊園地<rt>ゆうえんち</rt></ruby>へ行きます。</p>
+    <p>1 人分の<ruby>交通費<rt>こうつうひ</rt></ruby>は、<ruby>大人<rt>おとな</rt></ruby>が 480 円、<ruby>子ども<rt>こども</rt></ruby>が 420 円です。</p>
+    <p>(1) <ruby>遊園地<rt>ゆうえんち</rt></ruby>までの全員分の<ruby>交通費<rt>こうつうひ</rt></ruby>は、何円ですか。</p>
+    <div class="answer">
+      <span class="label">式</span>
+      <input type="text" name="formula1" required>
     </div>
+    <div class="answer">
+      <span class="label">答え</span>
+      <input type="text" name="answer1" required>
+    </div>
+    <p>(2) <ruby>大人<rt>おとな</rt></ruby> 3 人分と <ruby>子ども<rt>こども</rt></ruby> 3 人分の<ruby>遊園地<rt>ゆうえんち</rt></ruby>までの<ruby>交通費<rt>こうつうひ</rt></ruby>のちがいは、何円ですか。</p>
+    <div class="answer">
+      <span class="label">式</span>
+      <input type="text" name="formula2" required>
+    </div>
+    <div class="answer">
+      <span class="label">答え</span>
+      <input type="text" name="answer2" required>
+    </div>
+  </div>
 
-    <!-- Pertanyaan 3 -->
-    <div class="question">
-        <div class="question-header">
-            <h3>3. あのかたは私たちの<span style="color: red;">せんせい</span>（______）。この文を日本語で解釈してください。</h3>
-        </div>
-        <div class="question-options">
-            <textarea name="q3" rows="4" cols="50" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
-        </div>
+  <div class="question">
+    <p>2. <ruby>紙<rt>かみ</rt></ruby>テープで、大きい<ruby>おおきい<rt>おおきい</rt></ruby>輪 飾り<ruby>わかざり<rt>わかざり</rt></ruby>を 7 こと、小さい<ruby>ちいさい<rt>ちいさい</rt></ruby>輪飾り<ruby>わかざり<rt>わかざり</rt></ruby>を 7 こつくります。</p>
+    <p>1 こつくるのに、大きい<ruby>おおきい< rt>おおきい</rt></ruby>輪飾り<ruby>わかざり<rt>わかざり</rt></ruby>は 15 cm, 小さい<ruby>ちいさい<rt>ちいさい</rt></ruby>輪飾り<ruby>わかざり<rt>わかざり</rt></ruby>は 8 cm 使います。<ruby>紙<rt>かみ</rt></ruby>テープは全部で何 m 何 cm いりますか。</p>
+    <div class="answer">
+      <span class="label">式</span>
+      <input type="text" name="formula3" required>
     </div>
+    <div class="answer">
+      <span class="label">答え</span>
+      <input type="text" name="answer3" required>
+    </div>
+  </div>
 
-    <!-- Pertanyaan 4 -->
-    <div class="question">
-        <div class="question-header">
-            <h3>4. 敬語で<span style="color: red;">じゃない</span>の形は何ですか？日本語で説明してください。</h3>
-        </div>
-        <div class="question-options">
-            <textarea name="q4" rows="4" cols="50" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
-        </div>
-    </div>
-
-    <!-- Pertanyaan 5 -->
-    <div class="question">
-        <div class="question-header">
-            <h3>5. <span style="color: red;">ただいま</span>の反対語は何ですか？理由を日本語で答えてください。</h3>
-        </div>
-        <div class="question-options">
-            <textarea name="q5" rows="4" cols="50" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
-        </div>
-    </div>
-
-    <!-- Tombol untuk mengumpulkan tugas -->
-    <div class="button-container">
-        <button type="button" class="button submit" onclick="submitQuiz()">Kumpulkan Tugas</button>
-    </div>
+  <button type="submit">Submit</button>
 </form>
 
-<!-- Modal -->
-<div id="resultModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Hasil Kuis</h2>
-        </div>
-        <div class="modal-body" id="modalBody">
-            <!-- Hasil akan ditampilkan di sini -->
-        </div>
-        <div class="modal-footer">
-            <button class="button retry" onclick="retryQuiz()">Coba Lagi</button>
-        </div>
-    </div>
-</div>
-
-<footer>
-    <p>&copy; 2024 Kursus Bahasa Jepang INN. All rights reserved.</p>
-</footer>
+<div class="result" id="result"></div>
 
 <script>
-    // Jawaban yang benar
+  const form = document.getElementById('mathForm');
+  const resultDiv = document.getElementById('result');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const answers = {};
+    formData.forEach((value, key) => {
+      answers[key] = value;
+    });
     const correctAnswers = {
-        q1: 'は',
-        q2: 'じん',
-        q3: 'です',
-        q4: 'じゃありません',
-        q5: 'おかえりなさい'
+      answer1: '1440',
+      answer2: '180',
+      answer3: '105 cm'
     };
-
-    // Fungsi untuk mengumpulkan jawaban esai
-    function submitQuiz() {
-        const form = document.getElementById('quizForm');
-        const answers = {
-            q1: form.querySelector('textarea[name="q1"]').value.trim(),
-            q2: form.querySelector('textarea[name="q2"]').value.trim(),
-            q3: form.querySelector('textarea[name="q3"]').value.trim(),
-            q4: form.querySelector('textarea[name="q4"]').value.trim(),
-            q5: form.querySelector('textarea[name="q5"]').value.trim(),
-        };
-
-        let score = 0;
-        let totalQuestions = Object.keys(correctAnswers).length;
-
-        // Cek jawaban
-        for (let key in correctAnswers) {
-            if (answers[key] === correctAnswers[key]) {
-                score++;
-            }
-        }
-
-        const percentageScore = (score / totalQuestions) * 100;
-        const displayScore = Math.round(percentageScore);
-
-        // Tampilkan hasil
-        const modal = document.getElementById('resultModal');
-        const modalBody = document.getElementById('modalBody');
-        modalBody.innerHTML = `
-            <p><strong>Skor Anda:</strong> ${score} dari ${totalQuestions} (${displayScore}%)</p>
-            <p>Anda ${displayScore >= 60 ? '<span style="color: #28a745; font-weight: bold;">Lulus</span>' : '<span style="color: #dc3545; font-weight: bold;">Tidak Lulus</span>'}.</p>
-        `;
-        modal.style.display = 'flex'; // Tampilkan modal
-    }
-
-    // Fungsi untuk tombol "Coba Lagi"
-    function retryQuiz() {
-        document.getElementById('quizForm').reset(); // Atur ulang form
-        document.getElementById('resultModal').style.display = 'none'; // Sembunyikan modal
-    }
-
-    // Menutup modal ketika klik di luar modal
-    window.onclick = function(event) {
-        const modal = document.getElementById('resultModal');
-        if (event.target === modal) {
-            modal.style.display = 'none'; // Sembunyikan modal
-        }
-    };
+    let score = 0;
+    let correctCount = 0;
+    let incorrectCount = 0;
+    Object.keys(answers).forEach((key) => {
+      if (answers[key] === correctAnswers[key]) {
+        score += 10;
+        correctCount++;
+      } else {
+        incorrectCount++;
+      }
+    });
+    const resultHTML = `
+      <p>Score: ${score} / 30</p>
+      <p>Correct answers: ${correctCount}</p>
+      <p>Incorrect answers: ${incorrectCount}</p>
+      <ul>
+        ${Object.keys(answers).map((key) => {
+          if (answers[key] === correctAnswers[key]) {
+            return `<li class="correct">${key}: ${answers[key]} (Correct)</li>`;
+          } else {
+            return `<li class="incorrect">${key}: ${answers[key]} (Incorrect)</li>`;
+          }
+        }).join('')}
+      </ul>
+    `;
+    resultDiv.innerHTML = resultHTML;
+  });
 </script>
-<script src="../js/block.js"></script>
-  <script src="../js/copy.js"></script>
- 
-  <script src="../js/no screen.js"></script>
+
 </body>
 </html>

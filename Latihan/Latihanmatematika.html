@@ -6,6 +6,7 @@
   <title>Soal Matematika</title>
   <link rel="stylesheet" href="../css/footer.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       font-family: 'Noto Sans JP', sans-serif;
@@ -13,9 +14,29 @@
       margin: 0;
       padding: 20px;
     }
-    h1 {
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 0;
       text-align: center;
-      color: #333;
+    }
+    h1 {
+      margin: 0;
+    }
+    .nav-bar {
+      list-style-type: none;
+      padding: 0;
+    }
+    .nav-bar li {
+      display: inline;
+      margin: 0 15px;
+    }
+    .nav-bar a {
+      color: white;
+      text-decoration: none;
+    }
+    .nav-bar a:hover {
+      text-decoration: underline;
     }
     .question {
       background: #fff;
@@ -23,21 +44,26 @@
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       padding: 20px;
       margin-bottom: 20px;
+      transition: transform 0.2s;
+    }
+    .question:hover {
+      transform: scale(1.02);
     }
     .answer {
       display: flex;
       margin-bottom: 20px;
     }
     .answer input {
-      width: 100px;
+      width: 120px;
       margin-right: 10px;
-      padding: 5px;
+      padding: 8px;
       border: 1px solid #ccc;
       border-radius: 3px;
     }
     .answer .label {
       margin-right: 10px;
       font-weight: bold;
+      align-self: center;
     }
     button {
       padding: 10px 15px;
@@ -46,6 +72,7 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
     button:hover {
       background-color: #218838;
@@ -63,16 +90,36 @@
     .incorrect {
       color: red;
     }
+    .partial-correct {
+      color: orange;
+    }
     ruby {
       ruby-position: over;
+    }
+    #chart {
+      margin-top: 20px;
+    }
+    footer {
+      text-align: center;
+      padding: 10px 0;
+      margin-top: 20px;
+      background-color: #007bff;
+      color: white;
+      position: relative;
+    }
+    footer a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <h1>INN</h1>
-        </div>
+        <h1>INN</h1>
         <nav>
             <ul class="nav-bar">
                 <li><a href="#">Home</a></li>
@@ -80,24 +127,13 @@
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="Akun.html">Login</a></li>
             </ul>
-            <span class="hamburger" id="hamburger-menu">
-                <i class="fas fa-bars"></i>
-            </span>
         </nav>
     </header>
-    <div class="nav-bar-mobile" id="mobile-menu">
-        <a href="#">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="Akun.html">Login</a>
-    </div>
-
-<h1>Soal Matematika</h1>
 
 <form id="mathForm">
   <div class="question">
     <p>1. <ruby>大人<rt>おとな</rt></ruby> 3 人と <ruby>子ども<rt>こども</rt></ruby> 3 人で、<ruby>遊園地<rt>ゆうえんち</rt></ruby>へ行きます。</p>
-    <p>1 人分の<ruby>交通費<rt>こうつうひ</rt></ruby>は、<ruby>大人<rt>おとな</rt></ruby>が 480 円、<ruby>子ども<rt>こども</rt></ruby>が 420 円です。</p>
+    <p>1 人分の<ruby>交通費<rt>こうつうひ</rt></ruby>は、< ruby>大人<rt>おとな</rt></ruby>が 480 円、<ruby>子ども<rt>こども</rt></ruby>が 420 円です。</p>
     <p>(1) <ruby>遊園地<rt>ゆうえんち</rt></ruby>までの全員分の<ruby>交通費<rt>こうつうひ</rt></ruby>は、何円ですか。</p>
     <div class="answer">
       <span class="label">式</span>
@@ -107,7 +143,7 @@
       <span class="label">答え</span>
       <input type="text" name="answer1" required>
     </div>
-    <p>(2) <ruby>大人<rt>おとな</rt></ruby> 3 人分と <ruby>子ども<rt>こども</rt></ruby> 3 人分の<ruby>遊園地<rt>ゆうえんち</rt></ruby>までの<ruby>交通費<rt>こうつうひ</rt></ruby>のちがいは、何円ですか 。</p>
+    <p>(2) <ruby>大人<rt>おとな</rt></ruby> 3 人分と <ruby>子ども<rt>こども</rt></ruby> 3 人分の<ruby>遊園地<rt>ゆうえんち</rt></ruby>までの<ruby>交通費<rt>こうつうひ</rt></ruby>のちがいは、何円ですか。</p>
     <div class="answer">
       <span class="label">式</span>
       <input type="text" name="formula2" required>
@@ -119,8 +155,8 @@
   </div>
 
   <div class="question">
-    <p>2. <ruby>紙<rt>かみ</rt></ruby>テープで、大きい<ruby>おおきい<rt>おおきい</rt></ruby >輪 飾り<ruby>わかざり<rt>わかざり</rt></ruby>を 7 こと、小さい<ruby>ちいさい<rt>ちいさい</rt></ruby>輪飾り<ruby>わかざり<rt>わかざり</rt></ruby>を 7 こつくります。</p>
-    <p>1 こつくるのに、大きい<ruby>おおきい< rt>おおきい</rt></ruby>輪飾り<ruby>わかざり<rt>わかざり</rt></ruby>は 15 cm, 小さい<ruby>ちいさい<rt>ちいさい</rt></ruby>輪飾り<ruby>わかざり<rt>わかざり</rt></ruby>は 8 cm 使います。<ruby>紙<rt>かみ</rt></ruby>テープは全部で何 m 何 cm いりますか。</p>
+    <p>2. <ruby>紙<rt>かみ</rt></ruby>テープで、大きい<ruby>おおきい<rt>おおきい</rt></ruby>輪 飾り<ruby>わかざり<rt>わかざり</rt></ruby>を 7 こと、小さい<ruby>ちいさい<rt>ちいさい</rt></ruby>輪飾り<ruby>わかざり<rt>わかざり</rt></ruby>を 7 こつくります。</p>
+    <p>1 こつくるのに、大きい<ruby>おおきい<rt>おおきい</rt></ruby>輪飾り<ruby>わかざり<rt>わかざり</rt></ruby>は 15 cm, 小さい<ruby>ちいさい<rt>ちいさい</rt></ruby>輪飾り<ruby>わかざり<rt>わかざり</rt></ruby>は 8 cm 使います。<ruby>紙<rt>かみ</rt></ruby>テープは全部で何 m 何 cm いりますか。</p>
     <div class="answer">
       <span class="label">式</span>
       <input type="text" name="formula3" required>
@@ -131,14 +167,57 @@
     </div>
   </div>
 
+  <div class="question">
+    <p>3. <ruby>果物<rt>くだもの</rt></ruby>を 4 箱に分けます。<ruby>果物<rt>くだもの</rt></ruby>の個数は 24 個です。</p>
+    <p>1 箱に何個の<ruby>果物<rt>くだもの</rt></ruby>が入るか計算してください。</p>
+    <div class="answer">
+      <span class="label">式</span>
+      <input type="text" name="formula4" required>
+    </div>
+    <div class="answer">
+      <span class="label">答え</span>
+      <input type="text" name="answer4" required>
+    </div>
+  </div>
+
+  <div class="question">
+    <p>4. <ruby>本<rt>ほん</rt></ruby>を 3 冊に分けます。<ruby>本<rt>ほん</rt></ruby>の個数は 18 冊です。</p>
+    <p>1 冊に何個の<ruby>本<rt>ほん</rt></ruby>が入るか計算してください。</p>
+    <div class="answer">
+      <span class="label">式</span>
+      <input type="text" name="formula5" required>
+    </div>
+    <div class="answer">
+      <span class="label">答え</span>
+      <input type="text " name="answer5" required>
+    </div>
+  </div>
+
+  <div class="question">
+    <p>5. <ruby>友達<rt>ゆうだち</rt></ruby>と <ruby>私<rt>わたし</rt></ruby>で、<ruby>ゲーム<rt>げーむ</rt></ruby>を 5 回プレイします。</p>
+    <p><ruby>友達<rt>ゆうだち</rt></ruby>が 3 回勝ち、<ruby>私<rt>わたし</rt></ruby>が 2 回勝ちました。</p>
+    <p><ruby>友達<rt>ゆうだち</rt></ruby>が勝ちた回数と <ruby>私<rt>わたし</rt></ruby>が勝ちた回数の差は、何回ですか。</p>
+    <div class="answer">
+      <span class="label">式</span>
+      <input type="text" name="formula6" required>
+    </div>
+    <div class="answer">
+      <span class="label">答え</span>
+      <input type="text" name="answer6" required>
+    </div>
+  </div>
+
   <button type="submit">Submit</button>
 </form>
 
 <div class="result" id="result"></div>
 
+<div id="chart"></div>
+
 <script>
   const form = document.getElementById('mathForm');
   const resultDiv = document.getElementById('result');
+  const chartDiv = document.getElementById('chart');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(form);
@@ -149,7 +228,10 @@
     const correctAnswers = {
       answer1: '1440',
       answer2: '180',
-      answer3: '105 cm'
+      answer3: '105 cm',
+      answer4: '6',
+      answer5: '6',
+      answer6: '1'
     };
     let score = 0;
     let correctCount = 0;
@@ -175,7 +257,7 @@
       <p>Correct answers: ${correctCount}</p>
       <p>Incorrect answers: ${incorrectCount}</p>
       <ul>
-        ${Object.keys(answers).map((key) => {
+ ${Object.keys(answers).map((key) => {
           const userAnswer = answers[key];
           const correctAnswer = correctAnswers[key];
           if (userAnswer === correctAnswer) {
@@ -183,7 +265,7 @@
           } else {
             const difference = Math.abs(parseFloat(userAnswer) - parseFloat(correctAnswer));
             if (difference < 10) {
-              return `<li class="partial-correct">${key}: ${userAnswer} (Partially Correct)</li>`;
+              return `<li class="partial-correct">${key}: ${userAnswer } (Partially Correct)</li>`;
             } else {
               return `<li class="incorrect">${key}: ${userAnswer} (Incorrect)</li>`;
             }
@@ -192,8 +274,29 @@
       </ul>
     `;
     resultDiv.innerHTML = resultHTML;
+    const chartData = [
+      { label: 'Correct', value: correctCount },
+      { label: 'Incorrect', value: incorrectCount }
+    ];
+    const chart = new Chart(chartDiv, {
+      type: 'pie',
+      data: chartData,
+      options: {
+        title: {
+          display: true,
+          text: 'Answer Distribution'
+        }
+      }
+    });
   });
 </script>
+
+<footer>
+    <p>&copy; 2024 Kursus Bahasa Jepang INN. All rights reserved.</p>
+    <a href="et/about.html">Tentang Kami</a> | 
+    <a href="et/kebijakan privasi.html">Kebijakan Privasi</a> |
+    <a href="et/cs.html">Customer Service</a>
+</footer>
 
 </body>
 </html>

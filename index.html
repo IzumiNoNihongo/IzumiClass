@@ -1,393 +1,190 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Izumi Class</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/kb.css">
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f6f9;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* Header Styling */
-        header {
-            background-color: #ff8b8b;
-            padding: 15px;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-bar {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-bar li {
-            margin-right: 20px;
-        }
-
-        .nav-bar a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 50vh;
-            background: linear-gradient(135deg,  #2c3e50,  #2c3e50);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 20px;
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        /* Section Styling */
-        .section {
-            width: 90%;
-            max-width: 1200px;
-            margin: 30px auto;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        /* Table Styling */
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .table thead {
-            background-color: rgb(255, 113, 113);
-            color: white;
-        }
-
-        .table th, .table td {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .table tr:hover {
-            background-color: #e0f7fa;
-            transition: background-color 0.3s;
-        }
-
-        .table a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .table a:hover {
-            text-decoration: underline;
-        }
-
-        /* Button Animation */
-        button {
-            padding: 10px 20px;
-            background-color: rgb(255, 113, 113);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: rgba(255, 231, 231, 0.671);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .table {
-                font-size: 14px;
-                overflow-x: auto; /* Important for responsive tables */
-            }
-
-            .nav-bar {
-                display: none; /* Hide desktop nav in mobile */
-            }
-
-            .hamburger {
-                display: block; /* Show hamburger in mobile */
-            }
-
-            .nav-bar-mobile {
-                display: none;
-                flex-direction: column;
-                background-color: #34495e;
-                padding: 10px;
-            }
-
-            .nav-bar-mobile a {
-                padding: 10px;
-                color: white;
-            }
-
-            .nav-bar-mobile.active {
-                display: flex;
-            }
-
-        }
-    </style>
+    <title>言葉</title>
+    <link rel="stylesheet" href="../../../css/table.css">
 </head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+      h1 {
+        text-align: center;
+        color: #007acc;
+        margin-top: 20px;
+      }
+      nav {
+        background-color: #007acc;
+        padding: 10px 0;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+      }
+      nav ul li {
+        margin: 0 15px;
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
+      section {
+        padding: 20px;
+        margin: 20px auto;
+        width: 90%;
+        max-width: 1200px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #007acc;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      tr:hover {
+        background-color: #eaeaea;
+      }
+</style>
 <body>
-    <header>
-        <div class="logo">
-            <h1>INN</h1>
-        </div>
-        <nav>
-            <ul class="nav-bar">
-                <li><a href="#">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="Akun.html">Login</a></li>
-            </ul>
-            <span class="hamburger" id="hamburger-menu">
-                <i class="fas fa-bars"></i>
-            </span>
-        </nav>
-    </header>
-    <div class="nav-bar-mobile" id="mobile-menu">
-        <a href="#">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="Akun.html">Login</a>
-    </div>
-    
-    <!-- Hero Section -->
-    <section class="hero">
-        <div>
-            <h2>Tugas dan Materi</h2>
-            <p>Cek tugas dan materi yang telah dibagikan oleh sensei!</p>
-        </div>
-    </section>
-
-    <!-- Tugas 1 Section -->
-    <section class="section">
-        <h2>Tugas 1</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Tugas</th>
-                    <th>Tanggal</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>自己紹介</td>
-                    <td>2024-10-20</td>
-                    <td>Belum Dikerjakan</td>
-                    <td><a href="materi/自己紹介.html"><button>開ける</button></a></td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>自己紹介宿題</td>
-                    <td>2024-10-20</td>
-                    <td>渡してください</td>
-                    <td><a href="#"><button>渡す</button></a></td>
-                </tr>
-            </tbody>
+    <section id="aisatsu">
+        <h2>(Aisatsu) saat ketemuan</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ことば</th>
+              <th>かんじ</th>
+              <th>いみ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>おはよう</td><td>お早う</td><td>Selamat pagi</td></tr>
+            <tr><td>おは</td><td></td><td>Pagi! (santai)</td></tr>
+            <tr><td>こんにちは</td><td>今日は</td><td>Selamat siang</td></tr>
+            <tr><td>こんちゃ</td><td></td><td>Hai! (siang, santai)</td></tr>
+            <tr><td>こんばんは</td><td>今晩は</td><td>Selamat malam</td></tr>
+            <tr><td>おばんです</td><td></td><td>Selamat malam (dialek Kansai)</td></tr>
+            <tr><td>やあ</td><td></td><td>Halo! (santai)</td></tr>
+            <tr><td>よう</td><td></td><td>Hei! (santai)</td></tr>
+            <tr><td>ヤッホー</td><td></td><td>Hai! (informal, biasanya antar teman)</td></tr>
+            <tr><td>おっす</td><td></td><td>Hei! (maskulin, santai)</td></tr>
+            <tr><td>ちーっす</td><td></td><td>Hai! (santai, sangat kasual)</td></tr>
+            <tr><td>ひさしぶり</td><td>久しぶり</td><td>Lama tak jumpa</td></tr>
+          </tbody>
         </table>
-    </section>
-
-    <!-- Tugas 2 Section -->
-    <section class="section">
-        <h2>Tugas 2</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Tugas</th>
-                    <th>Tanggal</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>2</td>
-                    <td>Materi</td>
-                    <td>2024年10月23日</td>
-                    <td>見られる</td>
-                    <td><a href="materi/Materi 2.html"><button>開ける</button></a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Materi</td>
-                    <td>2024年10月23日</td>
-                    <td>見られる</td>
-                    <td><a href="materi/Materi kono1.html"><button>開ける</button></a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Materi</td>
-                    <td>2024年10月23日</td>
-                    <td>見られる</td>
-                    <td><a href="materi/Materi kosakata2.html"><button>開ける</button></a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Tugas</td>
-                    <td>2024年10月23日</td>
-                    <td>見られる</td>
-                    <td><a href="tugas/tugas2.html"><button>開ける</button></a></td>
-                </tr>
-            </tbody>
+      </section>
+      <section id="aisatsu-perpisahan">
+        <h2> (Aisatsu) Saat Berpisah</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ことば</th>
+              <th>かんじ</th>
+              <th>いみ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>またね</td><td></td><td>Sampai nanti</td></tr>
+            <tr><td>じゃね～</td><td></td><td>Dah! (santai)</td></tr>
+            <tr><td>バイバイ</td><td></td><td>Bye-bye</td></tr>
+            <tr><td>またな</td><td></td><td>Sampai nanti ya (kasual, maskulin)</td></tr>
+            <tr><td>元気でね</td><td></td><td>Jaga diri ya</td></tr>
+            <tr><td>じゃ、バイバイ</td><td></td><td>Oke, bye-bye</td></tr>
+            <tr><td>またこんど</td><td></td><td>Sampai lain kali</td></tr>
+            <tr><td>また明日</td><td>また明日</td><td>Sampai besok</td></tr>
+            <tr><td>じゃあまた</td><td></td><td>Sampai jumpa</td></tr>
+            <tr><td>おつかれ</td><td></td><td>Terima kasih atas kerja kerasnya (santai)</td></tr>
+            <tr><td>おつかれさまでした</td><td>お疲れ様でした</td><td>Terima kasih atas kerja kerasnya (formal)</td></tr>
+            <tr><td>おさきにしつれいします</td><td>お先に失礼します</td><td>Permisi saya pergi duluan</td></tr>
+            <tr><td>ではまた</td><td></td><td>Sampai jumpa (formal)</td></tr>
+            <tr><td>さよなら</td><td>さようなら</td><td>Selamat tinggal</td></tr>
+          </tbody>
         </table>
-    </section>
+      </section>
+            
+      <section id="situasi-kehidupan">
+        <h2> Berdasarkan Situasi Kehidupan</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ことば</th>
+              <th>かんじ</th>
+              <th>いみ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>いただきます</td><td></td><td>Selamat makan (sebelum makan)</td></tr>
+            <tr><td>ごちそうさまでした</td><td></td><td>Terima kasih atas makanannya (setelah makan)</td></tr>
+            <tr><td>いってきます</td><td></td><td>Saya pergi dulu</td></tr>
+            <tr><td>いってらっしゃい</td><td></td><td>Hati-hati di jalan</td></tr>
+            <tr><td>ただいま</td><td></td><td>Saya pulang</td></tr>
+            <tr><td>おかえりなさい</td><td></td><td>Selamat datang kembali</td></tr>
+            <tr><td>おじゃまします</td><td></td><td>Permisi masuk</td></tr>
+            <tr><td>お疲れさまでした</td><td>お疲れ様でした</td><td>Terima kasih atas kerja kerasnya</td></tr>
+            <tr><td>はじめまして</td><td>初めまして</td><td>Salam kenal</td></tr>
+            <tr><td>よろしくおねがいします</td><td>よろしくお願いします</td><td>Mohon bantuannya</td></tr>
+            <tr><td>おはよう</td><td>お早う</td><td>Selamat pagi</td></tr>
+            <tr><td>おやすみなさい</td><td>お休みなさい</td><td>Selamat tidur</td></tr>
+            <tr><td>お誕生日おめでとう</td><td>お誕生日おめでとう</td><td>Selamat ulang tahun</td></tr>
+            <tr><td>おめでとうございます</td><td></td><td>Selamat</td></tr>
+            <tr><td>ごめん</td><td></td><td>Maaf (santai)</td></tr>
+            <tr><td>ごめんね</td><td></td><td>Maaf ya (santai)</td></tr>
+            <tr><td>ごめんなさい</td><td></td><td>Maaf</td></tr>
+            <tr><td>すみません</td><td></td><td>Permisi / Maaf</td></tr>
+            <tr><td>たいへんもうしわけありません</td><td>大変申し訳ありません</td><td>Saya sangat menyesal (formal)</td></tr>
+            <tr><td>ごめいわくかけてたいへんもうしわけありません</td><td>ご迷惑かけて大変申し訳ありません</td><td>Maaf telah merepotkan (sangat formal)</td></tr>
+            <tr><td>おせわになりした</td><td>お世話になりした。</td><td>Terima kasih banyak untuk segalanya</td></tr>
+        </tbody>
+        </table>
+      </section>
+      <section id="aisatsu-budaya">
+        <h2> Aisatsu Berdasarkan Budaya</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ことば</th>
+              <th>かんじ</th>
+              <th>いみ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>あけましておめでとうございます</td><td>明けましておめでとうございます</td><td>Selamat Tahun Baru</td></tr>
+            <tr><td>ことしもよろしくお願いします</td><td>今年もよろしくお願いします</td><td>Mohon kerja samanya tahun ini</td></tr>
+            <tr><td>メリークリスマス</td><td></td><td>Selamat Natal</td></tr>
+            <tr><td>ごけっこんおめでとうございます</td><td>ご結婚おめでとうございます</td><td>Selamat atas pernikahan Anda</td></tr>
+            <tr><td>すえながくおしあわせに</td><td>末永くお幸せに</td><td>Semoga berbahagia selamanya</td></tr>
+            <tr><td>おたんじょうびおめでとうございます</td><td>お誕生日おめでとうございます</td><td>Selamat Ulang Tahun</td></tr>
+            <tr><td>すてきな一ねんになりますように</td><td>素敵な一年になりますように</td><td>Semoga tahun ini menjadi tahun yang indah</td></tr>
+          </tbody>
+        </table>
+      </section>
+      
 
-    <!-- Tugas 3 Section -->
-    <section class="section">
-        <h2>Tugas 3</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Tugas</th>
-                    <th>Tanggal Deadline</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>3</td>
-                <td>Materi</td>
-                <td>2024年10月27日</td>
-                <td>見られる</td>
-                <td><a href="https://youtu.be/ypltHAv2898?si=fArHvhyNreG7cogj"><button>開ける</button></a></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Materi</td>
-                <td>2024年10月27日</td>
-                <td>見られる</td>
-                <td><a href="https://youtu.be/O7rRW8wkGrM?si=0vtJRxjPW-jV7N4I"><button>開ける</button></a></td>
-            </tr>
-        
-                <tr>
-                    <td>3</td>
-                    <td>Tugas</td>
-                <td>2024年10月27日</td>
-                <td>見られる</td>
-                    <td><a href="https://www.izuminonihongo.online/IzumiClass/Latihan/Latihanmatematika.html"><button>開ける</button></a></td>
-                </tr>
-            </tbody>
-             </table>   
-    </section>
-    
-     <!-- Tugas 4 Section -->
-     <section class="section">
-        <h2>Tugas 4</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Tugas</th>
-                    <th>Tanggal Deadline</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>4</td>
-                    <td>Belum di tentukan</td>
-                    <td>Belum di tentukan</td>
-                    <td>Belum Dikerjakan</td>
-                <td><a href=""><button>開ける</button></a></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Belum di tentukan</td>
-                <td>Belum di tentukan</td>
-                <td>Belum Dikerjakan</td>
-                <td><a href=""><button>開ける</button></a></td>
-            </tr>
-        
-                <tr>
-                    <td>4</td>
-                    <td>Belum di tentukan</td>
-                    <td>Belum di tentukan</td>
-                    <td>Belum Dikerjakan</td>
-                    <td><a href=""><button>開ける</button></a></td>
-                </tr>
-            </tbody>
-             </table>   
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Kursus Bahasa Jepang INN. All rights reserved.</p>
-        <a href="et/about.html">Tentang Kami</a> | 
-        <a href="et/kebijakan privasi.html">Kebijakan Privasi</a> |
-        <a href="et/cs.html">Customer Service</a>
-    </footer>
-
-    <!-- JavaScript untuk toggle mobile menu -->
-    <script>
-        document.getElementById('hamburger-menu').addEventListener('click', function() {
-            var menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('active');
-        });
-    </script>
-    <script src="js/block.js"></script>
 </body>
 </html>

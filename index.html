@@ -1,191 +1,427 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>言葉</title>
-    <link rel="stylesheet" href="../../../css/table.css">
-
-</head>
-<style>
-    body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+    <title>Kanji Game</title>
+    <style>
+/* Styling umum */
+/* Styling umum */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e3f2fd; /* Warna biru muda */
+    text-align: center;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
-  }
-  h1 {
-    text-align: center;
-    color: #007acc;
-    margin-top: 20px;
-  }
-  nav {
-    background-color: #007acc;
-    padding: 10px 0;
-  }
-  nav ul {
-    list-style: none;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    margin: 0;
-    padding: 0;
-  }
-  nav ul li {
-    margin: 0 15px;
-  }
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  nav ul li a:hover {
-    text-decoration: underline;
-  }
-  section {
-    padding: 20px;
-    margin: 20px auto;
-    width: 90%;
-    max-width: 1200px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-  }
-  th {
-    background-color: #007acc;
-    color: white;
-  }
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  tr:hover {
-    background-color: #eaeaea;
-  }
-
-  footer {
-    background: #007acc;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: 30px; /* Dorong footer ke bawah */
+    align-items: center;
 }
-</style>
+
+/* Container utama (box tengah) */
+.container {
+    background: white;
+    width: 350px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+/* Judul */
+h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Kanji besar */
+#kanji {
+    font-size: 60px;
+    color: red;
+}
+
+/* Input bacaan & arti */
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Tombol cek jawaban */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 95%;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+/* Efek hover tombol */
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Skor & Timer */
+p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+#score {
+    font-weight: bold;
+    color: #ff9800;
+}
+
+#timer {
+    font-weight: bold;
+    color: #28a745;
+}
+
+/* Meaning (arti kanji) */
+#meaning {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+    opacity: 0;  /* 0 = tidak terlihat */
+    transition: opacity 0.5s ease-in-out;
+}
+
+#meaning:hover {
+    opacity: 1;  /* Muncul saat hover */
+}
+
+/* Hasil jawaban */
+.correct {
+    color: green;
+    font-weight: bold;
+}
+
+.wrong {
+    color: red;
+    font-weight: bold;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 400px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    #kanji {
+        font-size: 50px;
+    }
+}
+
+/* --- CSS untuk Tampilan Hasil Jawaban --- */
+
+/* Box jawaban */
+.feedback-list {
+    max-height: 250px; /* Batasi tinggi maksimal */
+    overflow-y: auto; /* Aktifkan scroll jika melebihi batas */
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background: #f9f9f9;
+    margin-top: 10px;
+}
+
+/* Warna jawaban benar & salah */
+.correct-box {
+    background: #d4edda;
+    border-left: 5px solid green;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.wrong-box {
+    background: #f8d7da;
+    border-left: 5px solid red;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+/* Gaya teks dalam hasil jawaban */
+.feedback-item {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.feedback-item:last-child {
+    border-bottom: none;
+}
+
+/* Tombol untuk melihat semua jawaban */
+#showAllBtn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+#showAllBtn:hover {
+    background-color: #0056b3;
+}
+
+/* Efek animasi muncul hasil */
+#feedback {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#feedback.show {
+    opacity: 1;
+}
+
+    </style>
+</head>
 <body>
-    <nav>
-        <ul>
+    <div class="container">
+        <h2>Kanji Game</h2>
+        <div id="questions">
+       
+        
+        <div class="kanji" id="kanji">完了</div>
+        <p id="meaning">Selesai</p>
+        <input type="text" id="reading" placeholder="Masukkan bacaan (hiragana/katakana)">
+        <input type="text" id="meaningInput" placeholder="Masukkan arti dalam bahasa Indonesia">
+        <button onclick="checkAnswer()">Cek Jawaban</button>
+        <p id="feedback"></p>
+        <div class="scoreboard">
+            <p>🏆 Skor: <span id="score">0</span></p>
+            <p>⏳ Waktu: <span id="timer">30</span> detik</p>
+        </div>
+    </div>
+        </div>
+    <script>
 
-          <li><a href="#ruangan">ホーム</a></li>
-          <li><a href="../../Pepustakaan.html">図書館</a></li>
-          <li><a href="力.html">一位</a></li>
-          <li><a href="struktur INN.html">structur</a></li>
-         
-        </ul>
-      </nav>
-      <section id="Kosakata yang sering digunakan dirumah">
-        <h2>Kosakata yang sering digunakan dirumah</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>ことば</th>
-              <th>かんじ</th>
-              <th>いみ</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>ねむい</td><td>眠い</td><td>Mengantuk</td></tr>
-            <tr><td>ねる</td><td>寝る</td><td>Tidur</td></tr>
-            <tr><td>ねぶそく</td><td>眠不足</td><td>Kurang Tidur</td></tr>
-            <tr><td>さがす</td><td>探す</td><td>Mencari</td></tr>
-            <tr><td>きる</td><td>着る</td><td>Memakai (pakaian)</td></tr>
-            <tr><td>きがえる</td><td>着替える</td><td>Berganti Pakaian</td></tr>
-            <tr><td>ぬぐ</td><td>脱ぐ</td><td>Melepas (pakaian)</td></tr>
-            <tr><td>すてる</td><td>捨てる</td><td>Membuang</td></tr>
-            <tr><td>あける</td><td>開ける</td><td>Membuka</td></tr>
-            <tr><td>しめる</td><td>閉める</td><td>Menutup</td></tr>
-            <tr><td>あげる</td><td>上げる</td><td>Memberikan</td></tr>
-            <tr><td>もらう</td><td>貰う</td><td>Menerima</td></tr>
-            <tr><td>はいる</td><td>入る</td><td>Masuk</td></tr>
-            <tr><td>でる</td><td>出る</td><td>Keluar</td></tr>
-            <tr><td>いれる</td><td>入れる</td><td>Memasukkan</td></tr>
-            <tr><td>つける</td><td>付ける</td><td>Menyalakan</td></tr>
-            <tr><td>けす</td><td>消す</td><td>Mematikan</td></tr>
-            <tr><td>きく</td><td>聞く</td><td>Mendengar</td></tr>
-            <tr><td>しゃべる</td><td>喋る</td><td>Berbicara</td></tr>
-            <tr><td>はなす</td><td>話す</td><td>Berbicara</td></tr>
-            <tr><td>よむ</td><td>読む</td><td>Membaca</td></tr>
-            <tr><td>かく</td><td>書く</td><td>Menulis</td></tr>
-            <tr><td>おふろ</td><td>お風呂</td><td>Mandi</td></tr>
-            <tr><td>みがく</td><td>磨く</td><td>Menggosok, membersihkan</td></tr>
-            <tr><td>いく</td><td>行く</td><td>Pergi</td></tr>
-            <tr><td>くる</td><td>来る</td><td>Datang</td></tr>
-            <tr><td>かえる</td><td>帰る</td><td>Pulang</td></tr>
-            <tr><td>でかける</td><td>出かける</td><td>Keluar (untuk pergi)</td></tr>
-            <tr><td>でていって</td><td>出て行って</td><td>Keluar sana!!</td></tr>
-            <tr><td>むかう</td><td>向かう</td><td>Menuju</td></tr>
-            <tr><td>ついてくる</td><td>ついて来る</td><td>Mengikuti (seseorang)</td></tr>
-            <tr><td>おいで</td><td>来い</td><td>Datanglah (kasual)</td></tr>
-            <tr><td>あそぶ</td><td>遊ぶ</td><td>Bermain</td></tr>
-            <tr><td>みる</td><td>見る</td><td>Melihat</td></tr>
-            <tr><td>わらう</td><td>笑う</td><td>Tertawa</td></tr>
-            <tr><td>かう</td><td>買う</td><td>Membeli</td></tr>
-            <tr><td>りょうりする</td><td>料理する</td><td>Memasak</td></tr>
-            <tr><td>あげる</td><td>揚げる</td><td>Menggoreng</td></tr>
-            <tr><td>いためる</td><td>炒める</td><td>Menumis</td></tr>
-            <tr><td>きる</td><td>切る</td><td>Memotong</td></tr>
-            <tr><td>そそぐ</td><td>注ぐ</td><td>Menuangkan</td></tr>
-            <tr><td>つける</td><td>漬ける</td><td>Merendam, Mencelupkan</td></tr>
-            <tr><td>にる</td><td>煮る</td><td>Merebus (dengan bumbu)</td></tr>
-            <tr><td>むす</td><td>蒸す</td><td>Mengukus</td></tr>
-            <tr><td>やく</td><td>焼く</td><td>Memanggang</td></tr>
-            <tr><td>ゆでる</td><td>茹でる</td><td>Merebus ( dengan air panas)</td></tr>
-            <tr><td>たすける</td><td>助ける</td><td>Membantu</td></tr>
-            <tr><td>つくる</td><td>作る</td><td>Membuat</td></tr>
-            <tr><td>きる</td><td>切る</td><td>Memotong</td></tr>
-            <tr><td>しょくじ</td><td>食事</td><td>Makan</td></tr>
-            <tr><td>あさごはん</td><td>朝ごはん</td><td>Sarapan</td></tr>
-            <tr><td>ひるごはん</td><td>昼ごはん</td><td>Makan Siang</td></tr>
-            <tr><td>ばんごはん</td><td>晩ごはん</td><td>Makan Malam</td></tr>
-            <tr><td>たべる</td><td>食べる</td><td>Makan</td></tr>
-            <tr><td>くえる</td><td>食える</td><td>Makan (kasual)</td></tr>
-            <tr><td>のむ</td><td>飲む</td><td>Minum</td></tr>
-            <tr><td>いただきます</td><td>～</td><td>Selamat makan</td></tr>
-            <tr><td>ごちそうさまでした</td><td>～</td><td>Terima kasih atas makanannya</td></tr>
-            <tr><td>おなかがすいた</td><td>お腹が空いた</td><td>Sudah lapar</td></tr>
-            <tr><td>おなかいっぱい</td><td>お腹いっぱい</td><td>Sudah kenyang</td></tr>
-            <tr><td>まつ</td><td>待つ</td><td>Menunggu</td></tr>
-            <tr><td>できた</td><td>出来た</td><td>Sudah Jadi</td></tr>
-            <tr><td>あらう</td><td>洗う</td><td>Mencuci</td></tr>
-            <tr><td>かたづける</td><td>片付ける</td><td>Membereskan</td></tr>
-            <tr><td>だっこする</td><td>抱っこする</td><td>Menggendong</td></tr>
-            <tr><td>はこぶ</td><td>運ぶ</td><td>Mengangkut</td></tr>
-            <tr><td>にどと</td><td>二度と</td><td>Tidak akan terjadi lagi</td></tr>
-            <tr><td>たのむ</td><td>頼む</td><td>Memohon</td></tr>
-            <tr><td>かえる</td><td>変える</td><td>Mengubah</td></tr>
-            <tr><td>ほしい</td><td>欲しい</td><td>Menginginkan</td></tr>
-            <tr><td>つかれる</td><td>疲れる</td><td>Lelah</td></tr>
-            <tr><td>ただいま</td><td>～</td><td>Aku pulang</td></tr>
-            <tr><td>おかえりなさい</td><td>お帰りなさい</td><td>Selamat datang kembali</td></tr>
-            <tr><td>管理する</td><td>かんりする</td><td>Mengelola, mengurus</td></tr>
-            <tr><td>処理する</td><td>しょりする</td><td>Menangani, mengurus</td></tr>
-            <tr><td>世話をする</td><td>せわをする</td><td>Merawat, mengurus</td></tr>
-            <tr><td>手続きをする</td><td>てつづきをする</td><td>Mengurus prosedur</td></tr>
-            <tr><td>面倒を見る</td><td>めんどうをみる</td><td>Mengurus, merawat</td></tr>
-            <tr><td>育てる</td><td>そだてる</td><td>Membesarkan, mengurus</td></tr>
+const kanjiList = [
+{ kanji: "完了", reading: "かんりょう", meanings: ["Selesai", "Berakhir"] },
+{ kanji: "終わった", reading: "おわった", meanings: ["Selesai", "Tamat"] },
+{ kanji: "終了", reading: "しゅうりょう", meanings: ["Selesai", "Penghentian"] },
+{ kanji: "天才", reading: "てんさい", meanings: ["Jenius", "Berbakat"] },
+{ kanji: "与える", reading: "あたえる", meanings: ["Memberi", "Menyediakan"] },
+{ kanji: "亡くす", reading: "なくす", meanings: ["Kehilangan", "Kehilangan seseorang"] },
+{ kanji: "お互い", reading: "おたがい", meanings: ["Saling", "Satu sama lain"] },
+{ kanji: "自由", reading: "じゆう", meanings: ["bebas", "Kemerdekaan"] },
+{ kanji: "任務", reading: "にんむ", meanings: ["Tugas", "Misi","kewajiban"] },
+{ kanji: "交じる", reading: "まじる", meanings: ["mencampur", "Menyatu"] },
+{ kanji: "交通", reading: "こうつう", meanings: ["Lalu lintas",] },
+{ kanji: "伺", reading: "うかが", meanings: ["Mengunjungi", "Menanyakan"] },
+{ kanji: "決意", reading: "けつい", meanings: ["Tekad", "Keputusan"] },
+{ kanji: "否定", reading: "ひてい", meanings: ["Penolakan", "Penyangkalan"] },
+{ kanji: "あばれる", reading: "あばれる", meanings: ["Mengamuk", "Menggila"] },
+{ kanji: "空(あ)いてる", reading: "あいてる", meanings: ["Kosong", "ada waktu"] },
+{ kanji: "汗くさい", reading: "あせくさい", meanings: ["Bau keringat", "Bau tidak sedap"] },
+{ kanji: "代金", reading: "だいきん", meanings: ["Harga", "Biaya"] },
+{ kanji: "出来上(がり)", reading: "できあがり", meanings: ["penyelesaian"] },
+{ kanji: "出来事", reading: "できごと", meanings: ["Peristiwa", "Kejadian"] },
+{ kanji: "同時に", reading: "どうじに", meanings: ["Pada saat yang sama", "Bersamaan"] },
+{ kanji: "激しい", reading: "はげしい", meanings: ["Intens", "cepat",]},
+{ kanji: "測る", reading: "はかる", meanings: ["Mengukur", "Menimbang"] },
+{ kanji: "ハンドル", reading: "ハンドル", meanings: ["Setir", "Pegangan"] },
+{ kanji: "犯人", reading: "はんにん", meanings: ["Pelaku", "Tersangka"] },
+{ kanji: "位", reading: "くらい", meanings: ["Peringkat"] },
+{ kanji: "イメージ", reading: "イメージ", meanings: ["Citra"] },
+{ kanji: "印象", reading: "いんしょう", meanings: ["Kesan"] },
+{ kanji: "医療", reading: "いりょう", meanings: [ "Pengobatan"] },
+{ kanji: "医療費", reading: "いりょうひ", meanings: ["Biaya medis",] },
+{ kanji: "炒める", reading: "いためる", meanings: ["Menumis", ] },
+{ kanji: "正式", reading: "せいしき", meanings: ["Resmi"] },
+{ kanji: "いたずら", reading: "いたずら", meanings: ["Usil"] },
+{ kanji: "事前", reading: "じぜん", meanings: ["Sebelumnya", "Di muka"] },
+{ kanji: "純粋", reading: "じゅんすい", meanings: ["Murni"] },
+{ kanji: "重要", reading: "じゅうよう", meanings: ["Penting",] },
+{ kanji: "話題", reading: "わだい", meanings: ["Topik pembicaraan", "topik"] }
 
-          </tbody>
-        </table>
-    </section>
+];
+let currentIndex = 0;
+let score = 0;
+let correctCount = 0;
+let wrongCount = 0;
+let timeLeft = 30;
+let timer;
+let userAnswers = [];
+
+// Memulai timer saat permainan dimulai
+function startTimer() {
+    clearInterval(timer);
+    timeLeft = 30;
+    document.getElementById("timer").textContent = `${timeLeft} detik`;
+
+    timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").textContent = `${timeLeft} detik`;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            checkAnswer(true); // Cek jawaban otomatis jika waktu habis
+        }
+    }, 1000);
+}
+
+// Mengecek jawaban yang dimasukkan oleh pengguna
+function checkAnswer(timeUp = false) {
+    const readingInput = document.getElementById("reading").value.trim();
+    const meaningInput = document.getElementById("meaningInput").value.trim().toLowerCase();
+    const currentKanji = kanjiList[currentIndex];
+
+    let correct = (readingInput === currentKanji.reading &&
+                   currentKanji.meanings.some(m => fuzzyMatch(m.toLowerCase(), meaningInput)));
+
+    let feedbackText = correct ? "✅ Benar" : `❌ Salah! Jawaban: ${currentKanji.meanings.join(", ")}`;
+    let feedbackClass = correct ? "correct" : "wrong";
+
+    // Simpan jawaban ke dalam array untuk ditampilkan di akhir permainan
+    userAnswers.push({
+        kanji: currentKanji.kanji,
+        userReading: readingInput,
+        correctReading: currentKanji.reading,
+        userMeaning: meaningInput,
+        correctMeaning: currentKanji.meanings.join(", "),
+        status: correct ? "✅" : "❌"
+    });
+
+    // Tampilkan feedback langsung di bawah soal
+    let feedbackDiv = document.getElementById("feedback");
+feedbackDiv.innerHTML = `<span class="${feedbackClass}">${feedbackText}</span>`;
+
+    if (correct) {
+        score++;
+        correctCount++;
+    } else {
+        wrongCount++;
+    }
+
+    document.getElementById("score").textContent = score;
+
+    setTimeout(() => {
+        nextKanji();
+    }, 1000);
+}
+
+// Fungsi untuk berpindah ke soal berikutnya
+function nextKanji() {
+    if (currentIndex + 1 < kanjiList.length) {
+        currentIndex++;
+        const nextKanji = kanjiList[currentIndex];
+
+        document.getElementById("kanji").textContent = nextKanji.kanji;
+        document.getElementById("meaning").style.visibility = "hidden";
+        document.getElementById("reading").value = "";
+        document.getElementById("meaningInput").value = "";
+        document.getElementById("feedback").textContent = ""; // Hapus feedback sebelumnya
+
+        // Restart timer
+        clearInterval(timer);
+        timeLeft = 30;
+        document.getElementById("timer").textContent = `${timeLeft} detik`;
+        startTimer();
+    } else {
+        endGame();
+    }
+}
+
+function endGame() {
+    clearInterval(timer);
+
+    let resultHTML = `<h2>Game Selesai 🎉</h2>
+        <p>Benar: ${correctCount}</p>
+        <p>Salah: ${wrongCount}</p>
+        <p>Skor Akhir: ${score}</p>
+        <h3>Jawaban Kamu:</h3>
+        <div class="feedback-list" id="feedbackList">`;
+
+    // Ambil hanya 10 jawaban pertama untuk ditampilkan awalnya
+    let maxVisible = 10;
+    userAnswers.forEach((item, index) => {
+        let hiddenClass = index >= maxVisible ? "hidden-answer" : "";
+        resultHTML += `
+        <div class="feedback-item ${hiddenClass}">
+            <p><strong>${index + 1}. ${item.kanji}</strong></p>
+            <p>Jawaban Kamu: ${item.userReading} - ${item.userMeaning}</p>
+            <p>Jawaban Benar: ${item.correctReading} - ${item.correctMeaning}</p>
+            <p>Status: ${item.status}</p>
+        </div>`;
+    });
+
+    resultHTML += `</div>`;
+
+    // Tambahkan tombol untuk melihat semua jawaban jika jumlahnya lebih dari 10
+    if (userAnswers.length > maxVisible) {
+        resultHTML += `<button id="showAllBtn">Lihat Semua Jawaban</button>`;
+    }
+
+    document.querySelector(".container").innerHTML = resultHTML;
+
+    // Tambahkan event listener untuk tombol
+    let showAllBtn = document.getElementById("showAllBtn");
+    if (showAllBtn) {
+        showAllBtn.addEventListener("click", () => {
+            document.querySelectorAll(".hidden-answer").forEach(item => {
+                item.classList.remove("hidden-answer");
+            });
+            showAllBtn.style.display = "none"; // Sembunyikan tombol setelah ditekan
+        });
+    }
+}
+
+// Fungsi fuzzy match untuk mencocokkan jawaban dengan toleransi kesalahan kecil
+function fuzzyMatch(expected, input) {
+    return expected.includes(input) || similarity(expected, input) > 0.8;
+}
+
+// Fungsi untuk menghitung tingkat kemiripan antara dua string
+function similarity(s1, s2) {
+    let longer = s1.length > s2.length ? s1 : s2;
+    let shorter = s1.length > s2.length ? s2 : s1;
+    let longerLength = longer.length;
+    if (longerLength === 0) return 1.0;
+    return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
+}
+
+// Algoritma edit distance untuk membandingkan dua string
+function editDistance(s1, s2) {
+    let costs = [];
+    for (let i = 0; i <= s1.length; i++) {
+        let lastValue = i;
+        for (let j = 0; j <= s2.length; j++) {
+            if (i === 0) costs[j] = j;
+            else if (j > 0) {
+                let newValue = costs[j - 1];
+                if (s1.charAt(i - 1) !== s2.charAt(j - 1)) {
+                    newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+                }
+                costs[j - 1] = lastValue;
+                lastValue = newValue;
+            }
+        }
+        if (i > 0) costs[s2.length] = lastValue;
+    }
+    return costs[s2.length];
+}
+
+// Memulai permainan pertama kali
+startTimer();
+
+    </script>
 </body>
 </html>

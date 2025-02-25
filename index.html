@@ -1,427 +1,326 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanji Game</title>
-    <style>
-/* Styling umum */
-/* Styling umum */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #e3f2fd; /* Warna biru muda */
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Container utama (box tengah) */
-.container {
-    background: white;
-    width: 350px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out;
-}
-
-
-/* Judul */
-h2 {
-    font-size: 22px;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-/* Kanji besar */
-#kanji {
-    font-size: 60px;
-    color: red;
-}
-
-/* Input bacaan & arti */
-input {
-    width: 90%;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    text-align: center;
-}
-
-/* Tombol cek jawaban */
-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 95%;
-    margin-top: 10px;
-    transition: 0.3s;
-}
-
-/* Efek hover tombol */
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Skor & Timer */
-p {
-    font-size: 16px;
-    margin: 5px 0;
-}
-
-#score {
-    font-weight: bold;
-    color: #ff9800;
-}
-
-#timer {
-    font-weight: bold;
-    color: #28a745;
-}
-
-/* Meaning (arti kanji) */
-#meaning {
-    font-size: 18px;
-    font-weight: bold;
-    color: #555;
-    opacity: 0;  /* 0 = tidak terlihat */
-    transition: opacity 0.5s ease-in-out;
-}
-
-#meaning:hover {
-    opacity: 1;  /* Muncul saat hover */
-}
-
-/* Hasil jawaban */
-.correct {
-    color: green;
-    font-weight: bold;
-}
-
-.wrong {
-    color: red;
-    font-weight: bold;
-}
-
-/* Responsif untuk layar kecil */
-@media (max-width: 400px) {
-    .container {
-        width: 90%;
-        padding: 15px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>言葉</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
     }
-
-    #kanji {
-        font-size: 50px;
+    h1 {
+      text-align: center;
+      color: #007acc;
+      margin-top: 20px;
     }
-}
-
-/* --- CSS untuk Tampilan Hasil Jawaban --- */
-
-/* Box jawaban */
-.feedback-list {
-    max-height: 250px; /* Batasi tinggi maksimal */
-    overflow-y: auto; /* Aktifkan scroll jika melebihi batas */
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    background: #f9f9f9;
-    margin-top: 10px;
-}
-
-/* Warna jawaban benar & salah */
-.correct-box {
-    background: #d4edda;
-    border-left: 5px solid green;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-}
-
-.wrong-box {
-    background: #f8d7da;
-    border-left: 5px solid red;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-}
-
-/* Gaya teks dalam hasil jawaban */
-.feedback-item {
-    padding: 5px;
-    border-bottom: 1px solid #ddd;
-}
-
-.feedback-item:last-child {
-    border-bottom: none;
-}
-
-/* Tombol untuk melihat semua jawaban */
-#showAllBtn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-#showAllBtn:hover {
-    background-color: #0056b3;
-}
-
-/* Efek animasi muncul hasil */
-#feedback {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-#feedback.show {
-    opacity: 1;
-}
-
-    </style>
+    nav {
+      background-color: #007acc;
+      padding: 10px 0;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+    section {
+      padding: 20px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 1200px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #007acc;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    tr:hover {
+      background-color: #eaeaea;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Kanji Game</h2>
-        <div id="questions">
-       
-        
-        <div class="kanji" id="kanji">完了</div>
-        <p id="meaning">Selesai</p>
-        <input type="text" id="reading" placeholder="Masukkan bacaan (hiragana/katakana)">
-        <input type="text" id="meaningInput" placeholder="Masukkan arti dalam bahasa Indonesia">
-        <button onclick="checkAnswer()">Cek Jawaban</button>
-        <p id="feedback"></p>
-        <div class="scoreboard">
-            <p>🏆 Skor: <span id="score">0</span></p>
-            <p>⏳ Waktu: <span id="timer">30</span> detik</p>
-        </div>
-    </div>
-        </div>
-    <script>
+  <h1>Kosakata Ruangan di Rumah</h1>
+  
+  <nav>
+    <ul>
+      <li><a href="#ruangan">Ruangan di Rumah</a></li>
+      <li><a href="#pintu-depan">Area Pintu Depan</a></li>
+      <li><a href="#dapur">Area Dapur</a></li>
+      <li><a href="#teknologi">Elektronik/Teknologi</a></li>
+      <li><a href="#kamar">Area Kamar</a></li>
+      <li><a href="#kamar-mandi">Area Kamar Mandi</a></li>
+      <li><a href="#ruang-tamu">Area Ruang Tamu</a></li>
+      <li><a href="#garasi">Area Garasi</a></li>
+    </ul>
+  </nav>
 
-const kanjiList = [
-{ kanji: "完了", reading: "かんりょう", meanings: ["Selesai", "Berakhir"] },
-{ kanji: "終わった", reading: "おわった", meanings: ["Selesai", "Tamat"] },
-{ kanji: "終了", reading: "しゅうりょう", meanings: ["Selesai", "Penghentian"] },
-{ kanji: "天才", reading: "てんさい", meanings: ["Jenius", "Berbakat"] },
-{ kanji: "与える", reading: "あたえる", meanings: ["Memberi", "Menyediakan"] },
-{ kanji: "亡くす", reading: "なくす", meanings: ["Kehilangan", "Kehilangan seseorang"] },
-{ kanji: "お互い", reading: "おたがい", meanings: ["Saling", "Satu sama lain"] },
-{ kanji: "自由", reading: "じゆう", meanings: ["bebas", "Kemerdekaan"] },
-{ kanji: "任務", reading: "にんむ", meanings: ["Tugas", "Misi","kewajiban"] },
-{ kanji: "交じる", reading: "まじる", meanings: ["mencampur", "Menyatu"] },
-{ kanji: "交通", reading: "こうつう", meanings: ["Lalu lintas",] },
-{ kanji: "伺", reading: "うかが", meanings: ["Mengunjungi", "Menanyakan"] },
-{ kanji: "決意", reading: "けつい", meanings: ["Tekad", "Keputusan"] },
-{ kanji: "否定", reading: "ひてい", meanings: ["Penolakan", "Penyangkalan"] },
-{ kanji: "あばれる", reading: "あばれる", meanings: ["Mengamuk", "Menggila"] },
-{ kanji: "空(あ)いてる", reading: "あいてる", meanings: ["Kosong", "ada waktu"] },
-{ kanji: "汗くさい", reading: "あせくさい", meanings: ["Bau keringat", "Bau tidak sedap"] },
-{ kanji: "代金", reading: "だいきん", meanings: ["Harga", "Biaya"] },
-{ kanji: "出来上(がり)", reading: "できあがり", meanings: ["penyelesaian"] },
-{ kanji: "出来事", reading: "できごと", meanings: ["Peristiwa", "Kejadian"] },
-{ kanji: "同時に", reading: "どうじに", meanings: ["Pada saat yang sama", "Bersamaan"] },
-{ kanji: "激しい", reading: "はげしい", meanings: ["Intens", "cepat",]},
-{ kanji: "測る", reading: "はかる", meanings: ["Mengukur", "Menimbang"] },
-{ kanji: "ハンドル", reading: "ハンドル", meanings: ["Setir", "Pegangan"] },
-{ kanji: "犯人", reading: "はんにん", meanings: ["Pelaku", "Tersangka"] },
-{ kanji: "位", reading: "くらい", meanings: ["Peringkat"] },
-{ kanji: "イメージ", reading: "イメージ", meanings: ["Citra"] },
-{ kanji: "印象", reading: "いんしょう", meanings: ["Kesan"] },
-{ kanji: "医療", reading: "いりょう", meanings: [ "Pengobatan"] },
-{ kanji: "医療費", reading: "いりょうひ", meanings: ["Biaya medis",] },
-{ kanji: "炒める", reading: "いためる", meanings: ["Menumis", ] },
-{ kanji: "正式", reading: "せいしき", meanings: ["Resmi"] },
-{ kanji: "いたずら", reading: "いたずら", meanings: ["Usil"] },
-{ kanji: "事前", reading: "じぜん", meanings: ["Sebelumnya", "Di muka"] },
-{ kanji: "純粋", reading: "じゅんすい", meanings: ["Murni"] },
-{ kanji: "重要", reading: "じゅうよう", meanings: ["Penting",] },
-{ kanji: "話題", reading: "わだい", meanings: ["Topik pembicaraan", "topik"] }
+  <section id="ruangan">
+    <h2>Ruangan di Rumah</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ことば</th>
+          <th>かんじ</th>
+          <th>いみ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>にわ</td><td>庭</td><td>Halaman rumah</td></tr>
+        <tr><td>いえ</td><td>家</td><td>Rumah</td></tr>
+        <tr><td>うち</td><td></td><td>Rumah</td></tr>
+        <tr><td>リビング</td><td></td><td>Ruang tamu</td></tr>
+        <tr><td>せんめんだい</td><td>洗面台</td><td>Wastafel</td></tr>
+        <tr><td>だいどころ</td><td>台所</td><td>Dapur</td></tr>
+        <tr><td>キッチン</td><td></td><td>Dapur</td></tr>
+        <tr><td>おくじょう</td><td>屋上</td><td>Balkon</td></tr>
+        <tr><td>へや</td><td>部屋</td><td>Kamar</td></tr>
+        <tr><td>じっか</td><td>実家</td><td>Rumah orang tua</td></tr>
+        <tr><td>おてあらい</td><td>お手洗い</td><td>Toilet / WC</td></tr>
+        <tr><td>よくしつ</td><td>浴室</td><td>Kamar mandi</td></tr>
+        <tr><td>しゃこ</td><td>車庫</td><td>Garasi</td></tr>
+        <tr><td>いま</td><td>居間</td><td>Ruang tamu</td></tr>
+      </tbody>
+    </table>
+</thead>
+<section id="pintu-depan">
+    <h2>Area Pintu Depan/Utama</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ことば</th>
+          <th>かんじ</th>
+          <th>いみ</th>
+        </tr>
+      </thead>
+      <tbody>
+  <tr><td>くつばこ</td><td></td><td>Rak sepatu</td></tr>
+  <tr><td>くつ</td><td></td><td>Sepatu</td></tr>
+  <tr><td>ながくつ</td><td></td><td>Boots</td></tr>
+  <tr><td>スリッパ</td><td></td><td>Sandal rumah</td></tr>
+  <tr><td>サンダル</td><td></td><td>Sandal</td></tr>
+  <tr><td>げなかんマット</td><td></td><td>Keset pintu</td></tr>
+  <tr><td>かさ</td><td></td><td>Payung</td></tr>
+</tbody>
+</table>
+</section>
 
-];
-let currentIndex = 0;
-let score = 0;
-let correctCount = 0;
-let wrongCount = 0;
-let timeLeft = 30;
-let timer;
-let userAnswers = [];
+<section id="dapur">
+<h2>Area Dapur/Ruang Makan</h2>
+<table>
+<thead>
+  <tr>
+    <th>ことば</th>
+    <th>かんじ</th>
+    <th>いみ</th>
+  </tr>
+</thead>
+<tbody>
+  <tr><td>れいぞこ</td><td></td><td>Kulkas</td></tr>
+  <tr><td>ほうちょう</td><td></td><td>Pisau dapur</td></tr>
+  <tr><td>まないた</td><td></td><td>Talenan</td></tr>
+  <tr><td>おぼん</td><td></td><td>Nampan</td></tr>
+  <tr><td>かわむき</td><td></td><td>Pengupas</td></tr>
+  <tr><td>みきいさ</td><td></td><td>Blender</td></tr>
+  <tr><td>すいはんき</td><td></td><td>Penanak nasi</td></tr>
+  <tr><td>でんしれんじ</td><td></td><td>Microwave</td></tr>
+  <tr><td>おーぶん</td><td></td><td>Oven</td></tr>
+  <tr><td>コンロ</td><td></td><td>Kompor</td></tr>
+  <tr><td>フライパン</td><td></td><td>Wajan</td></tr>
+  <tr><td>なべ</td><td></td><td>Panci</td></tr>
+  <tr><td>チタン</td><td></td><td>Alat titanium</td></tr>
+  <tr><td>じゃぐち</td><td></td><td>Keran</td></tr>
+  <tr><td>しょっき</td><td></td><td>Peralatan makan</td></tr>
+  <tr><td>さら</td><td></td><td>Piring</td></tr>
+  <tr><td>ちゃわん</td><td></td><td>Mangkuk</td></tr>
+  <tr><td>コップ</td><td></td><td>Gelas</td></tr>
+  <tr><td>グラッス</td><td></td><td>Kaca</td></tr>
+  <tr><td>はし</td><td></td><td>Sumpit</td></tr>
+  <tr><td>フォーク</td><td></td><td>Garpu</td></tr>
+  <tr><td>スプーン</td><td></td><td>Sendok</td></tr>
+  <tr><td>ナイフ</td><td></td><td>Pisau</td></tr>
+  <tr><td>ストる</td><td></td><td>Sedotan</td></tr>
+  <tr><td>つまようじ</td><td></td><td>Tusuk gigi</td></tr>
+</tbody>
+</table>
+</section>
 
-// Memulai timer saat permainan dimulai
-function startTimer() {
-    clearInterval(timer);
-    timeLeft = 30;
-    document.getElementById("timer").textContent = `${timeLeft} detik`;
+<section id="teknologi">
+    <h2>Elektronik/Teknologi</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ことば</th>
+          <th>かんじ</th>
+          <th>いみ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>でんき</td><td></td><td>Listrik</td></tr>
+        <tr><td>ランプ</td><td></td><td>Lampu</td></tr>
+        <tr><td>スマホ</td><td></td><td>Smartphone</td></tr>
+        <tr><td>くるま</td><td></td><td>Mobil</td></tr>
+        <tr><td>じてんしゃ</td><td></td><td>Sepeda</td></tr>
+        <tr><td>オートバイ</td><td></td><td>Sepeda motor</td></tr>
+        <tr><td>テレビ</td><td></td><td>Televisi</td></tr>
+        <tr><td>ラジオ</td><td></td><td>Radio</td></tr>
+        <tr><td>パソコン</td><td></td><td>Komputer</td></tr>
+        <tr><td>コンピューター</td><td></td><td>Komputer</td></tr>
+        <tr><td>せんぷうき</td><td></td><td>Kipas angin</td></tr>
+        <tr><td>でんわ</td><td></td><td>Telepon</td></tr>
+        <tr><td>エアコン</td><td></td><td>AC</td></tr>
+        <tr><td>プラグ</td><td></td><td>Steker</td></tr>
+      </tbody>
+    </table>
+  </section>
+  
+  <section id="kamar">
+    <h2>Area Kamar/Lemari</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ことば</th>
+          <th>かんじ</th>
+          <th>いみ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>ベット</td><td></td><td>Tempat tidur</td></tr>
+        <tr><td>まくら</td><td></td><td>Bantal</td></tr>
+        <tr><td>だきまくら</td><td></td><td>Bantal peluk</td></tr>
+        <tr><td>ライト</td><td></td><td>Lampu</td></tr>
+        <tr><td>かけぶとん</td><td></td><td>Selimut tebal</td></tr>
+        <tr><td>ふとん</td><td></td><td>Kasur tipis</td></tr>
+        <tr><td>もうふ</td><td></td><td>Selimut</td></tr>
+        <tr><td>たな</td><td></td><td>Rak</td></tr>
+        <tr><td>ひきだし</td><td></td><td>Laci</td></tr>
+        <tr><td>つくえ</td><td></td><td>Meja</td></tr>
+        <tr><td>いす</td><td></td><td>Kursi</td></tr>
+        <tr><td>ほん</td><td></td><td>Buku</td></tr>
+        <tr><td>ぺん</td><td></td><td>Pena</td></tr>
+        <tr><td>カレンダ</td><td></td><td>Kalender</td></tr>
+        <tr><td>とけい</td><td></td><td>Jam</td></tr>
+        <tr><td>ぼうし</td><td></td><td>Topi</td></tr>
+        <tr><td>ハンガ</td><td></td><td>Gantungan baju</td></tr>
+        <tr><td>ふく</td><td></td><td>Pakaian</td></tr>
+        <tr><td>パンツ</td><td></td><td>Celana</td></tr>
+        <tr><td>ティーシャツ</td><td></td><td>T-shirt</td></tr>
+        <tr><td>スカート</td><td></td><td>Rok</td></tr>
+        <tr><td>めがね</td><td></td><td>Kacamata</td></tr>
+        <tr><td>ねくたい</td><td></td><td>Dasi</td></tr>
+        <tr><td>せいふく</td><td></td><td>Seragam</td></tr>
+        <tr><td>ヒジャブ</td><td></td><td>Hijab</td></tr>
+        <tr><td>かばん</td><td></td><td>Tas</td></tr>
+        <tr><td>さいふ</td><td></td><td>Dompet</td></tr>
+        <tr><td>ごみばこ</td><td></td><td>Tempat sampah</td></tr>
+      </tbody>
+    </table>
+  </section>
+  
+  <section id="kamar-mandi">
+    <h2>Area Kamar Mandi</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ことば</th>
+          <th>かんじ</th>
+          <th>いみ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>おふろ</td><td>お風呂</td><td>Bathtub</td></tr>
+        <tr><td>シャワー</td><td></td><td>Shower</td></tr>
+        <tr><td>シャンプー</td><td></td><td>Sampo</td></tr>
+        <tr><td>せんめんだい</td><td></td><td>Wastafel</td></tr>
+        <tr><td>せつけん</td><td></td><td>Sabun</td></tr>
+        <tr><td>はぶらし</td><td></td><td>Sikat gigi</td></tr>
+        <tr><td>はみがきこ</td><td></td><td>Pasta gigi</td></tr>
+        <tr><td>どらいや</td><td></td><td>Pengering rambut</td></tr>
+        <tr><td>ひげそり</td><td></td><td>Alat cukur</td></tr>
+        <tr><td>タオル</td><td></td><td>Handuk</td></tr>
+        <tr><td>かがみ</td><td></td><td>Cermin</td></tr>
+        <tr><td>もん</td><td></td><td>Pintu</td></tr>
+        <tr><td>せんたくき</td><td></td><td>Mesin cuci</td></tr>
+        <tr><td>せんたくもの</td><td></td><td>Binatu</td></tr>
+      </tbody>
+    </table>
+  </section>
+  
+  <section id="ruang-tamu">
+    <h2>Area Ruang Tamu</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ことば</th>
+          <th>かんじ</th>
+          <th>いみ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>ソファー</td><td></td><td>Sofa</td></tr>
+        <tr><td>ぬいぐるみ</td><td></td><td>Boneka</td></tr>
+        <tr><td>みにか</td><td></td><td>Miniatur mobil</td></tr>
+        <tr><td>テレビ</td><td></td><td>Televisi</td></tr>
+        <tr><td>カーペット</td><td></td><td>Karpet</td></tr>
+        <tr><td>おもちゃ</td><td></td><td>Mainan</td></tr>
+        <tr><td>まど</td><td></td><td>Jendela</td></tr>
+        <tr><td>かべ</td><td></td><td>Dinding</td></tr>
+        <tr><td>ゆか</td><td></td><td>Lantai</td></tr>
+        <tr><td>かびん</td><td></td><td>Vas bunga</td></tr>
+        <tr><td>はな</td><td></td><td>Bunga</td></tr>
+        <tr><td>カーテン</td><td></td><td>Gorden</td></tr>
+      </tbody>
+    </table>
+  </section>
+  
+  <section id="garasi">
+    <h2>Area Garasi</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ことば</th>
+          <th>かんじ</th>
+          <th>いみ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>スケール／メジャー／コンベックス</td><td></td><td>Meteran</td></tr>
+      </tbody>
+    </table>
+  </section>
+  
 
-    timer = setInterval(() => {
-        timeLeft--;
-        document.getElementById("timer").textContent = `${timeLeft} detik`;
-
-        if (timeLeft <= 0) {
-            clearInterval(timer);
-            checkAnswer(true); // Cek jawaban otomatis jika waktu habis
-        }
-    }, 1000);
-}
-
-// Mengecek jawaban yang dimasukkan oleh pengguna
-function checkAnswer(timeUp = false) {
-    const readingInput = document.getElementById("reading").value.trim();
-    const meaningInput = document.getElementById("meaningInput").value.trim().toLowerCase();
-    const currentKanji = kanjiList[currentIndex];
-
-    let correct = (readingInput === currentKanji.reading &&
-                   currentKanji.meanings.some(m => fuzzyMatch(m.toLowerCase(), meaningInput)));
-
-    let feedbackText = correct ? "✅ Benar" : `❌ Salah! Jawaban: ${currentKanji.meanings.join(", ")}`;
-    let feedbackClass = correct ? "correct" : "wrong";
-
-    // Simpan jawaban ke dalam array untuk ditampilkan di akhir permainan
-    userAnswers.push({
-        kanji: currentKanji.kanji,
-        userReading: readingInput,
-        correctReading: currentKanji.reading,
-        userMeaning: meaningInput,
-        correctMeaning: currentKanji.meanings.join(", "),
-        status: correct ? "✅" : "❌"
-    });
-
-    // Tampilkan feedback langsung di bawah soal
-    let feedbackDiv = document.getElementById("feedback");
-feedbackDiv.innerHTML = `<span class="${feedbackClass}">${feedbackText}</span>`;
-
-    if (correct) {
-        score++;
-        correctCount++;
-    } else {
-        wrongCount++;
-    }
-
-    document.getElementById("score").textContent = score;
-
-    setTimeout(() => {
-        nextKanji();
-    }, 1000);
-}
-
-// Fungsi untuk berpindah ke soal berikutnya
-function nextKanji() {
-    if (currentIndex + 1 < kanjiList.length) {
-        currentIndex++;
-        const nextKanji = kanjiList[currentIndex];
-
-        document.getElementById("kanji").textContent = nextKanji.kanji;
-        document.getElementById("meaning").style.visibility = "hidden";
-        document.getElementById("reading").value = "";
-        document.getElementById("meaningInput").value = "";
-        document.getElementById("feedback").textContent = ""; // Hapus feedback sebelumnya
-
-        // Restart timer
-        clearInterval(timer);
-        timeLeft = 30;
-        document.getElementById("timer").textContent = `${timeLeft} detik`;
-        startTimer();
-    } else {
-        endGame();
-    }
-}
-
-function endGame() {
-    clearInterval(timer);
-
-    let resultHTML = `<h2>Game Selesai 🎉</h2>
-        <p>Benar: ${correctCount}</p>
-        <p>Salah: ${wrongCount}</p>
-        <p>Skor Akhir: ${score}</p>
-        <h3>Jawaban Kamu:</h3>
-        <div class="feedback-list" id="feedbackList">`;
-
-    // Ambil hanya 10 jawaban pertama untuk ditampilkan awalnya
-    let maxVisible = 10;
-    userAnswers.forEach((item, index) => {
-        let hiddenClass = index >= maxVisible ? "hidden-answer" : "";
-        resultHTML += `
-        <div class="feedback-item ${hiddenClass}">
-            <p><strong>${index + 1}. ${item.kanji}</strong></p>
-            <p>Jawaban Kamu: ${item.userReading} - ${item.userMeaning}</p>
-            <p>Jawaban Benar: ${item.correctReading} - ${item.correctMeaning}</p>
-            <p>Status: ${item.status}</p>
-        </div>`;
-    });
-
-    resultHTML += `</div>`;
-
-    // Tambahkan tombol untuk melihat semua jawaban jika jumlahnya lebih dari 10
-    if (userAnswers.length > maxVisible) {
-        resultHTML += `<button id="showAllBtn">Lihat Semua Jawaban</button>`;
-    }
-
-    document.querySelector(".container").innerHTML = resultHTML;
-
-    // Tambahkan event listener untuk tombol
-    let showAllBtn = document.getElementById("showAllBtn");
-    if (showAllBtn) {
-        showAllBtn.addEventListener("click", () => {
-            document.querySelectorAll(".hidden-answer").forEach(item => {
-                item.classList.remove("hidden-answer");
-            });
-            showAllBtn.style.display = "none"; // Sembunyikan tombol setelah ditekan
-        });
-    }
-}
-
-// Fungsi fuzzy match untuk mencocokkan jawaban dengan toleransi kesalahan kecil
-function fuzzyMatch(expected, input) {
-    return expected.includes(input) || similarity(expected, input) > 0.8;
-}
-
-// Fungsi untuk menghitung tingkat kemiripan antara dua string
-function similarity(s1, s2) {
-    let longer = s1.length > s2.length ? s1 : s2;
-    let shorter = s1.length > s2.length ? s2 : s1;
-    let longerLength = longer.length;
-    if (longerLength === 0) return 1.0;
-    return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
-}
-
-// Algoritma edit distance untuk membandingkan dua string
-function editDistance(s1, s2) {
-    let costs = [];
-    for (let i = 0; i <= s1.length; i++) {
-        let lastValue = i;
-        for (let j = 0; j <= s2.length; j++) {
-            if (i === 0) costs[j] = j;
-            else if (j > 0) {
-                let newValue = costs[j - 1];
-                if (s1.charAt(i - 1) !== s2.charAt(j - 1)) {
-                    newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
-                }
-                costs[j - 1] = lastValue;
-                lastValue = newValue;
-            }
-        }
-        if (i > 0) costs[s2.length] = lastValue;
-    }
-    return costs[s2.length];
-}
-
-// Memulai permainan pertama kali
-startTimer();
-
-    </script>
 </body>
 </html>
